@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+
+
+    <changeSet id="202204110918-1" author="matheus.ferreira">
+        <createTable tableName="status_ocorrencia" remarks="Entidade para representar o status de uma ocorrência">
+            <column name="id" type="INT" remarks="Chave primária da tabela Status_Ocorrencia">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_status_ocorrencia"/>
+            </column>
+            <column name="descricao" type="VARCHAR(255)" remarks="Descrição do status de uma ocorrência">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

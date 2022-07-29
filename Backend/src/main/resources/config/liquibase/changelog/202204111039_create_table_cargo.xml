@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+
+    <changeSet id="202204111039-01" author="layla.couto">
+        <createTable tableName="cargo" remarks="Tabela para representar os cargos dos usuários">
+            <column name="id" type="INT" remarks="Chave primária da tabela Cargo">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_cargo"/>
+            </column>
+            <column name="descricao" type="VARCHAR(50)" remarks="Breve descricao do cargo cadastrado">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

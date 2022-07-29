@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+
+
+    <changeSet id="202204110929-01" author="layla.couto">
+        <createTable tableName="impacto" remarks="Entidade para representar o impacto de uma ocorrência">
+            <column name="id" type="INT" remarks="Chave primária da tabela Impacto">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_impacto"/>
+            </column>
+            <column name="descricao" type="VARCHAR(50)" remarks="Descrição do impacto da ocorrência">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

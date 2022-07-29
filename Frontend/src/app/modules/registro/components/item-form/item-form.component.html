@@ -1,0 +1,34 @@
+<div [formGroup]="formItem">
+    <div class="formgrid grid">
+        <div class="field col-12 md:col-4 lg:col-4">
+            <label class="block">Projeto:</label>
+            <p-dropdown formControlName="idProjeto" [options]="projetos"
+                        filter="true" placeholder="Selecione o projeto" appendTo="body" class="ui-fluid">
+            </p-dropdown>
+        </div>
+        <div class="field col-12 md:col-4 lg:col-4">
+            <label class="block">Responsável:</label>
+            <p-dropdown formControlName="idUsuario" [options]="usuarios"
+                        filter="true" placeholder="Selecione o responsável" appendTo="body" class="ui-fluid">
+            </p-dropdown>
+        </div>
+        <div class="field col-12 md:col-4 lg:col-4 mb-3">
+            <label class="block">Status da ação:</label>
+            <p-dropdown formControlName="idStatusAcao" [options]="statusAcao"
+                        placeholder="Selecione o status" appendTo="body" class="ui-fluid">
+            </p-dropdown>
+        </div>
+        <div class="ui-fluid col-12">
+            <label for="acao" class="block">Ação:</label>
+            <input formControlName="acao" id="acao" type="text" pInputText>
+        </div>
+        <div class=" col-12 flex justify-content-end mt-3 mb-3">
+            <button type="button" pButton class="button-save-new" icon="pi pi-check" label="Salvar"
+                    (click)="verificaId()"></button>
+        </div>
+    </div>
+
+</div>
+<app-item-list [recebeIdRegList]="recebeIdRegistro" >
+
+</app-item-list>

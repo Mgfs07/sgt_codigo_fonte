@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+
+    <changeSet id="202204131113-1" author="matheus.ferreira">
+        <addColumn tableName="projeto">
+            <column name="id_cliente" type="BIGINT"/>
+        </addColumn>
+        <addForeignKeyConstraint baseTableName="projeto" baseColumnNames="id_cliente" referencedTableName="cliente"
+                                 referencedColumnNames="id" constraintName="FK_PROJETO_ON_ID_CLIENTE"/>
+    </changeSet>
+</databaseChangeLog>

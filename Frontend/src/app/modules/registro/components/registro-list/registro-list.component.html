@@ -1,0 +1,66 @@
+<p-tabView (onChange)="mudarAba($event)" (onClose)="mudarAba($event)" >
+    <p-tabPanel header="Registros" [closable]="false">
+        <div>
+            <div>
+                <div class="card col-12 flex">
+                    <em class="pi pi-search" style="margin:4px 4px 0 0"></em>
+                    <input class="flex-1" type="text" pInputText placeholder="Global Filter">
+                </div>
+                <p-table [columns]="cols" [value]="registros" [paginator]="true" [rows]="10" responsiveLayout="scroll" responsive = "true"
+                         sortMode="multiple">
+                    <ng-template pTemplate="header" let-columns>
+                        <tr>
+                            <th id="colunas" *ngFor="let col of columns" [pSortableColumn]="col.field">
+                                {{col.header}}
+                                <ng-container *ngIf="col.header != 'Ações'">
+                                    <p-sortIcon [field]="col.field" aria-label="Ative para classificar"></p-sortIcon>
+                                </ng-container>
+                            </th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-rowData let-columns="columns">
+                        <tr class="tabela">
+                            <td *ngFor="let col of columns">
+                                <ng-container *ngIf="!isDataLimite(col.field) && !isAcoes(col.field)">
+                                    {{rowData[col.field]}}
+                                </ng-container>
+
+                                <ng-container *ngIf="isDataLimite(col.field)">
+                                    {{rowData[col.field] | date: "dd/MM/yyyy"}}
+                                </ng-container>
+                                <ng-container *ngIf="isAcoes(col.field)">
+                                    <div class="flex justify-content-center p-0">
+                                        <button pButton icon="pi pi-eye" (click)="visualizar(rowData.id)"
+                                                class="botao-secundario sem-fundo button-view flex align-items-center
+                                                justify-content-center m-1"></button>
+                                        <button pButton type="button" icon="pi pi-pencil" (click)="editar(rowData.id)"
+                                                [disabled]="!rowData.ativo"
+                                                class="botao-secundario sem-fundo button-view flex align-items-center
+                                                justify-content-center m-1"></button>
+                                        <button pButton type="button" icon="pi pi-trash"
+                                                [disabled]="!rowData.ativo"
+                                                class="botao-primario sem-fundo flex align-items-center justify-content-center m-1"
+                                                (click)="confirm(rowData.id)"
+                                        ></button>
+                                    </div>
+                                </ng-container>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+    </p-tabPanel>
+    <p-tabPanel *ngFor="let tab of tabs; let i = index;" [selected]="selectAba(i)" [header]="tab.header" [closable]="true">
+        <p-accordion>
+            <p-accordionTab [selected]="tab.etapa == 1" header="Formulário de Registro">
+                <app-registro-form [idRegistro]="tab.idRegistro" (aoRegistrar)="setarIdRegistroTab(tab, $event)" [editing]="editing"></app-registro-form>
+            </p-accordionTab>
+            <p-accordionTab header="Itens do Registro" [disabled]="!tab.idRegistro" [selected]="tab.etapa == 2">
+                <app-item-form *ngIf="tab.idRegistro && tab.idCliente" [recebeIdRegistro]="tab.idRegistro" [receberIdCliente]="tab.idCliente"></app-item-form>
+            </p-accordionTab>
+        </p-accordion>
+    </p-tabPanel>
+    <p-tabPanel  [closable]="false" #novaAba leftIcon="pi pi-plus"></p-tabPanel>
+</p-tabView>
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>

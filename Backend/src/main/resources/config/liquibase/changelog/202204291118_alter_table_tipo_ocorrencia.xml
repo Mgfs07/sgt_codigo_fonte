@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+
+    <changeSet id="202204291118-1" author="leonardo.inacio">
+        <dropPrimaryKey tableName="tipo_ocorrencia" constraintName="pk_tipo_ocorrencia"/>
+    </changeSet>
+    <changeSet id="202204291118-2" author="leonardo.inacio">
+        <renameTable oldTableName="tipo_ocorrencia" newTableName="tipo_registro"/>
+    </changeSet>
+    <changeSet id="202204291118-3" author="leonardo.inacio">
+        <addPrimaryKey tableName="tipo_registro" columnNames="id" constraintName="pk_tipo_registro"/>
+        <addNotNullConstraint tableName="tipo_registro" columnName="id"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+
+    <changeSet id="202204131409-1" author="leonardo.inacio">
+        <createTable tableName="ocorrencia" remarks="Entidade para representar a ocorrência registrada">
+            <column name="id" type="BIGINT" remarks="Chave primária da tabela Ocorrencia">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_ocorrencia"/>
+            </column>
+            <column name="titulo" type="VARCHAR(50)" remarks="Atributo para receber o título da ocorrência">
+                <constraints nullable="false"/>
+            </column>
+            <column name="descricao" type="VARCHAR(255)" remarks="Atributo para a descrição da ocorrência">
+                <constraints nullable="false"/>
+            </column>
+            <column name="data_inicio" type="DATETIME" remarks="Atributo que receberá a data de criação da ocorrência">
+                <constraints nullable="false"/>
+            </column>
+            <column name="data_limite" type="DATETIME" remarks="Atributo para atribuir uma data limite para a ocorrência">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ativo" type="BOOLEAN" remarks="Atributo para realizar a exclusão lógica da ocorrencia"/>
+            <column name="id_tipo_ocorrencia" type="INT" remarks="Atributo para referenciar o tipo da ocorrência registrada">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id_impacto" type="INT" remarks="Atributo para referenciar o impacto de uma ocorrência">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id_status_ocorrencia" type="INT" remarks="Atributo para referenciar o status atual de uma ocorrência">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id_prioridade" type="INT" remarks="Atributo para referenciar a prioridade de uma ocorrência">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="id_impacto" baseTableName="ocorrencia" constraintName="FK_OCORRENCIA_ON_ID_IMPACTO" referencedColumnNames="id" referencedTableName="impacto"/>
+        <addForeignKeyConstraint baseColumnNames="id_prioridade" baseTableName="ocorrencia" constraintName="FK_OCORRENCIA_ON_ID_PRIORIDADE" referencedColumnNames="id" referencedTableName="prioridade"/>
+        <addForeignKeyConstraint baseColumnNames="id_status_ocorrencia" baseTableName="ocorrencia" constraintName="FK_OCORRENCIA_ON_ID_STATUS_OCORRENCIA" referencedColumnNames="id" referencedTableName="status_ocorrencia"/>
+        <addForeignKeyConstraint baseColumnNames="id_tipo_ocorrencia" baseTableName="ocorrencia" constraintName="FK_OCORRENCIA_ON_ID_TIPO_OCORRENCIA" referencedColumnNames="id" referencedTableName="tipo_ocorrencia"/>
+    </changeSet>
+</databaseChangeLog>

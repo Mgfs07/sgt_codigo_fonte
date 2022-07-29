@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+
+    <changeSet id="202204110935-1" author="fabio.formentini">
+        <createTable tableName="tipo_ocorrencia" remarks="Entidade para representar o tipo da ocorrência">
+            <column name="id" type="INT" remarks="Chave primária da tabela tipo_ocorrencia">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_tipo_ocorrencia"/>
+            </column>
+            <column name="descricao" type="VARCHAR(50)" remarks="Descrição da ocorrência"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

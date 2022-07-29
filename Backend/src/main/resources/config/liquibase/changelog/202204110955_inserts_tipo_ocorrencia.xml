@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+
+    <changeSet id="202204110955-2" author="fabio.formentini">
+        <insert tableName="tipo_ocorrencia">
+            <column name="id" valueNumeric="1"/>
+            <column name="descricao" value="Impedimento"/>
+        </insert>
+        <insert tableName="tipo_ocorrencia">
+            <column name="id" valueNumeric="2"/>
+            <column name="descricao" value="Atraso"/>
+        </insert>
+        <insert tableName="tipo_ocorrencia">
+            <column name="id" valueNumeric="3"/>
+            <column name="descricao" value="Acompanhamento"/>
+        </insert>
+        <insert tableName="tipo_ocorrencia">
+            <column name="id" valueNumeric="4"/>
+            <column name="descricao" value="Melhoria"/>
+        </insert>
+        <insert tableName="tipo_ocorrencia">
+            <column name="id" valueNumeric="5"/>
+            <column name="descricao" value="Pendência"/>
+        </insert>
+        <insert tableName="tipo_ocorrencia">
+            <column name="id" valueNumeric="6"/>
+            <column name="descricao" value="Ponto de Atenção"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

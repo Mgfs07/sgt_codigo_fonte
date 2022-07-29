@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+
+
+    <changeSet id="202204111426-1" author="matheus.ferreira">
+        <createTable tableName="projeto" remarks="Entidade para representar os projetos/sistemas">
+            <column name="id" type="BIGINT" remarks="Chave primária da tabela projeto">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_projeto"/>
+            </column>
+            <column name="nome" type="VARCHAR(255)" remarks="Nome do projeto cadastrado">
+                <constraints nullable="false"/>
+            </column>
+            <column name="descricao" type="VARCHAR(255)" remarks="Breve descrição do projeto cadastrado">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ativo" type="BOOLEAN" remarks="Atributo para realizar a exclusão lógica do projeto"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

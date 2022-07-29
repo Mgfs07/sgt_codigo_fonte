@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+
+    <changeSet id="202204190856-1" author="layla.couto">
+        <createTable tableName="item" remarks="Entidade para representar os itens de uma ocorrência">
+            <column name="id" type="BIGINT" remarks="Chave primária da tabela item">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_item"/>
+            </column>
+            <column name="acao" type="VARCHAR(255)" remarks="Atributo para receber a descrição da ação de um item">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id_ocorrencia" type="BIGINT" remarks="Atributo para identificar a qual ocorrência o item pertence">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id_projeto" type="BIGINT" remarks="Atributo para identificar a qual projeto a ocorrência está relacionada">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id_usuario" type="BIGINT" remarks="Atributo para identificar o usuário responsável pelo item">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id_status_acao" type="INT" remarks="Atributo para referenciar o status da ação de um item da ocorrência">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ativo" type="INT" remarks="Atributo para realizar a exclusão lógica do item">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="id_ocorrencia" baseTableName="item" constraintName="FK_ITEM_ON_ID_OCORRENCIA" referencedColumnNames="id" referencedTableName="ocorrencia"/>
+        <addForeignKeyConstraint baseColumnNames="id_projeto" baseTableName="item" constraintName="FK_ITEM_ON_ID_PROJETO" referencedColumnNames="id" referencedTableName="projeto"/>
+        <addForeignKeyConstraint baseColumnNames="id_status_acao" baseTableName="item" constraintName="FK_ITEM_ON_ID_STATUS_ACAO" referencedColumnNames="id" referencedTableName="status_acao"/>
+        <addForeignKeyConstraint baseColumnNames="id_usuario" baseTableName="item" constraintName="FK_ITEM_ON_ID_USUARIO" referencedColumnNames="id" referencedTableName="usuario"/>
+    </changeSet>
+</databaseChangeLog>

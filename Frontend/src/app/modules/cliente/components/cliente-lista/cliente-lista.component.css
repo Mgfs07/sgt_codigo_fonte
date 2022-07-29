@@ -1,0 +1,19 @@
+.imagemCliente {
+    width: 100%;
+    height: 100%;
+}
+
+.tabela {
+    height: 1px;
+    text-align: center;
+}
+
+.acao {
+    background-color: white;
+}
+
+div.icone img {
+    min-width: 32px;
+    max-width: 64px;
+    width: 1.6vw;
+}
