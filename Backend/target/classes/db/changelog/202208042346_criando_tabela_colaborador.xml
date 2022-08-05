@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="202208042346" author="matheus">
+        <createTable tableName="colaborador">
+            <column name="id_colaborador" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_colaborador"/>
+            </column>
+            <column name="nome_colaborador" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id_unidade" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="telefone" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ativo" type="BOOLEAN"/>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="id_unidade" baseTableName="colaborador" constraintName="FK_COLABORADOR_ON_ID_UNIDADE" referencedColumnNames="id_unidade" referencedTableName="unidade"/>
+        <createSequence sequenceName="seq_colaborador" startValue="1" incrementBy="1"/>
+    </changeSet>
+</databaseChangeLog>

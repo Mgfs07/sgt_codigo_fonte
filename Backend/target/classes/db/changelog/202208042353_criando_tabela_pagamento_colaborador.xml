@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="202208042353" author="matheus">
+        <createTable tableName="pagamento_colaborador">
+            <column name="id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_pagamento_colaborador"/>
+            </column>
+            <column name="colaborador_id" type="INT"/>
+            <column name="pagamentos_id" type="INT"/>
+            <column name="observacao" type="VARCHAR(255)"/>
+            <column name="retirado_lugar" type="BOOLEAN"/>
+            <column name="pagamentos_retirado_id_pagamento" type="INT"/>
+            <column name="data_pagamento" type="DATE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="valor_pago" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="colaborador_id" baseTableName="pagamento_colaborador" constraintName="FK_PAGAMENTO_COLABORADOR_ON_COLABORADOR" referencedColumnNames="id_colaborador" referencedTableName="colaborador"/>
+        <addForeignKeyConstraint baseColumnNames="pagamentos_id" baseTableName="pagamento_colaborador" constraintName="FK_PAGAMENTO_COLABORADOR_ON_PAGAMENTOS" referencedColumnNames="id_pagamento" referencedTableName="pagamentos"/>
+        <addForeignKeyConstraint baseColumnNames="pagamentos_retirado_id_pagamento" baseTableName="pagamento_colaborador" constraintName="FK_PAGAMENTO_COLABORADOR_ON_PAGAMENTOS_RETIRADO_ID_PAGAMENTO" referencedColumnNames="id_pagamento" referencedTableName="pagamentos"/>
+        <createSequence sequenceName="seq_pagamento_colaborador" startValue="1" incrementBy="1"/>
+    </changeSet>
+</databaseChangeLog>

@@ -4,6 +4,7 @@ import com.br.sgt.sgtproject.domain.PagamentoColaborador;
 import com.br.sgt.sgtproject.repository.PagamentoColaboradorRepository;
 import com.br.sgt.sgtproject.service.dto.PagamentoColaboradorDTO;
 import com.br.sgt.sgtproject.service.dto.PagamentoColaboradorListDTO;
+import com.br.sgt.sgtproject.service.dto.ValoresDTO;
 import com.br.sgt.sgtproject.service.mapper.PagamentoColaboradorListMapper;
 import com.br.sgt.sgtproject.service.mapper.PagamentoColaboradorMapper;
 import com.br.sgt.sgtproject.service.util.MensagemPagamentoColaboradorUtil;
@@ -41,5 +42,18 @@ public class PagamentoColaboradorService {
         PagamentoColaborador pagamentoColaborador = mapper.toEntity(dto);
         return mapper.toDto(repository.save(pagamentoColaborador));
     }
+
+    public ValoresDTO valorDoacaoPagamento(){
+        ValoresDTO valoresDTO = new ValoresDTO();
+        valoresDTO.setMensalidade(repository.valorDoado(1));
+        valoresDTO.setCampori(repository.valorDoado(2));
+        valoresDTO.setCamisa(repository.valorDoado(3));
+        valoresDTO.setAcampEdessa(repository.valorDoado(4));
+        valoresDTO.setCaderno(repository.valorDoado(5));
+        valoresDTO.setLivre(repository.valorDoado(6));
+        valoresDTO.setDoacoes(repository.valorDoado(7));
+        return valoresDTO;
+    }
+
 
 }
