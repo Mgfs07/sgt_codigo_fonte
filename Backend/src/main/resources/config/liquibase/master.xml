@@ -1,69 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <databaseChangeLog
-    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
 
-
-    <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
-    <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
-    <include file="config/liquibase/changelog/202204111426_create_table_projeto.xml"/>
-    <include file="config/liquibase/changelog/202204110935_create_table_tipo_ocorrencia.xml"/>
-    <include file="config/liquibase/changelog/202204110955_inserts_tipo_ocorrencia.xml"/>
-    <include file="config/liquibase/changelog/202204111014_create_table_status_acao.xml"/>
-    <include file="config/liquibase/changelog/202204111016_inserts_status_acao.xml"/>
-    <include file="config/liquibase/changelog/202204110918_create_table_status_ocorrencia.xml"/>
-    <include file="config/liquibase/changelog/202204110927_inserts_table_status_ocorrencia.xml"/>
-    <include file="config/liquibase/changelog/202204110929_create_table_impacto.xml"
-             relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/202204111039_create_table_cargo.xml"
-             relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/202204111221_insert_into_table_impacto.xml"
-             relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/202204111222_insert_into_table_cargo.xml"
-             relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/202204110901_create_table_prioridade.xml"
-             relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/202204111257_create_table_cliente.xml"
-             relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/202204111339_insert_prioridade.xml"
-             relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/202204121456_create_seq_cliente.xml"
-             relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/202204131113_alter_table_projeto.xml"
-             relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/202204141104_create_sequence_table_projeto.xml"
-             relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/202204131409_create_table_ocorrencia.xml"
-             relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/202204131412_create_seq_ocorrencia.xml"
-             relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/202204190858_create_table_usuario.xml"
-             relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/202204190909_create_seq_usuario.xml"
-             relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/202204190856_crete_table_item.xml"
-             relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/202204190907_create_seq_item.xml"
-             relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/202204221016_alter_table_ocorrencia.xml"
-             relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/202204270816_alter_table_cliente_coluna_icone.xml"
-             relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/202204290954_alter_table_status_ocorrencia.xml"
-             relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/202204291118_alter_table_tipo_ocorrencia.xml"
-             relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/202204291128_alter_table_ocorrencia.xml"
-             relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/202204291307_alter_table_item.xml"
-             relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/202204291321_update_remarks.xml"
-             relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/202205050857_update_table_registro.xml"
-             relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/202205060739_drop_not_null_table_registro_coluna_id_negociavel.xml"
-             relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/202205040905_alter_table_item.xml"
-             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/202208042322_criando_tabela_Unidade.xml"/>
+    <include file="config/liquibase/changelog/202208042323_insert_tabela_unidade.xml"/>
+    <include file="config/liquibase/changelog/202208042326_criando_tabela_pagamentos.xml"/>
+    <include file="config/liquibase/changelog/202208042329_insert_tabela_pagamento.xml"/>
+    <include file="config/liquibase/changelog/202208042346_criando_tabela_colaborador.xml"/>
+    <include file="config/liquibase/changelog/202208042353_criando_tabela_pagamento_colaborador.xml"/>
+    <include file="config/liquibase/changelog/202208042355_criando_tabela_gastos.xml"/>
+    <include file="config/liquibase/changelog/202208042356_criando_tabela_doacoes.xml"/>
 </databaseChangeLog>
