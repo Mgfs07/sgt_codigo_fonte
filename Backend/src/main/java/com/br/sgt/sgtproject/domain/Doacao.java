@@ -6,9 +6,9 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.time.LocalDate;
 
-@Entity
 @Getter
 @Setter
+@Entity
 @Table(name = "doacoes")
 public class Doacao {
 

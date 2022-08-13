@@ -1,21 +1,16 @@
 import { NgModule } from '@angular/core';
-import { PRIMENG_IMPORTS } from './primeng-imports';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {Ng2SearchPipeModule} from 'ng2-search-filter';
+import { PRIMENG_IMPORTS } from './imports/primeng.imports';
+import { ANGULAR_IMPORTS } from './imports/angular.imports';
 
 @NgModule({
+    declarations: [],
     imports: [
         PRIMENG_IMPORTS,
-        FormsModule,
-        ReactiveFormsModule,
-        Ng2SearchPipeModule
-
+        ANGULAR_IMPORTS
     ],
-    providers: [],
     exports: [
         PRIMENG_IMPORTS,
-        ReactiveFormsModule,
-        FormsModule
+        ANGULAR_IMPORTS
     ]
 })
 export class SharedModule { }

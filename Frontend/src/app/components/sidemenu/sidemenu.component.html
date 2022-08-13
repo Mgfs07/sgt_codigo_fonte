@@ -1,0 +1,5 @@
+<div class="sidemenu" [ngClass]="{'invisivel': !estaVisivel() }">
+    <div class="opcao-menu" *ngFor="let opcao of opcoes">
+        <button pButton pRipple type="button" [icon]="opcao.icone" [pTooltip]="opcao.tooltip" tooltipPosition="right" (click)="opcao.aoClicar()"></button>
+    </div>
+</div>

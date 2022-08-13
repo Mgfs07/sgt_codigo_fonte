@@ -39,4 +39,5 @@
             <column name="nome_unidade" value="DESBRAVA+"/>
         </insert>
     </changeSet>
+
 </databaseChangeLog>

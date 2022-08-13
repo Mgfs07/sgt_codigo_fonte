@@ -25,7 +25,7 @@ public class Gasto {
     private String descricao;
 
     @ManyToOne
-    @JoinColumn(name = "id_colaborador", nullable = false)
+    @JoinColumn(name = "id_colaborador", nullable = false, referencedColumnName = "id_colaborador")
     private Colaborador colaborador;
 
     @Column(name = "data_dispesa")

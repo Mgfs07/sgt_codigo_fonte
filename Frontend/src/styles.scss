@@ -1,48 +1,15 @@
-@import "assets/layout/css/variaveis-globais.css";
-@import "assets/layout/css/sobrescritas-primeng.scss";
+@import "assets/css/variaveis-globais.css";
+@import "assets/fonts/Kreon/font-kreon.css";
+@import "assets/fonts/Reem_Kufi/font-reem-kufi.css";
 
-body .ui-button .ui-button-text{
-    padding: 0 !important;
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
 }
 
-.ui-sortable-column-icon{
-    font-size: 0.8em !important;
-}
-
-body .ui-widget-overlay {
-    opacity: 1.0;
-}
-
-.ui-dialog-title{
-    justify-content: center;
-
-}
-
-.button-save-new{
-    background-color: #F57F17 !important;
-    border: none !important;
-}
-
-.ui-accordion .ui-accordion-header.ui-state-active a{
-    background-color: #F67F48 !important;
-    border: #e06904f7 !important;
-}
-
-body .ui-accordion .ui-accordion-header:not(.ui-state-active):not(.ui-state-disabled):hover a {
-    background-color: #e06904f7;
-    color: white;
-    transition: 0.5s;
-}
-
-
-
-.ui-accordion .ui-accordion-header.ui-state-active a{
-    background-color: #757575!important;
-    border: #757575 !important;
-}
-
-body .ui-accordion .ui-accordion-header:not(.ui-state-active):not(.ui-state-disabled):hover a {
-    background-color: #757575;
-    color: white;
-    transition: 0.5s;
+* {
+    box-sizing: border-box;
 }

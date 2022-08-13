@@ -21,7 +21,7 @@ public class Colaborador {
     private String nomeColaborador;
 
     @ManyToOne
-    @JoinColumn(name = "id_unidade", nullable = false, referencedColumnName = "id")
+    @JoinColumn(name = "id_unidade", nullable = false, referencedColumnName = "id_unidade")
     private Unidade unidade;
 
     @Column(name = "telefone", nullable = false)

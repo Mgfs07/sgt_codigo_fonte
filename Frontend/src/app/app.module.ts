@@ -1,51 +1,24 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { AppComponent } from './pages/app/app.component';
+import { TopbarComponent } from './components/topbar/topbar.component';
+import { SidemenuComponent } from './components/sidemenu/sidemenu.component';
 import { SharedModule } from './shared/shared.module';
-import { AppTopbarComponent } from './components/topbar/app.topbar.component';
-import { AppFooterComponent } from './components/footer/app.footer.component';
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
-import { environment } from '../environments/environment';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import { PageNotificationModule, BreadcrumbModule, MenuModule, ErrorStackModule } from '@nuvem/primeng-components';
-import { ErrorModule, SecurityModule, VersionTagModule } from '@nuvem/angular-base';
-import { DiarioErrosComponent } from './components/diario-erros/diario-erros.component';
-import { BlockUIModule } from 'ng-block-ui';
-import {BlockUIInterceptor} from './shared/block-ui-interceptor';
-import {ConfirmationService} from 'primeng';
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        AppTopbarComponent,
-        AppFooterComponent,
-        DiarioErrosComponent
-    ],
-    imports: [
-        BlockUIModule.forRoot({
-            message: 'Carregando...'
-          }),
-        BrowserModule,
-        BrowserAnimationsModule,
-        AppRoutingModule,
-        SharedModule,
-        HttpClientModule,
-        PageNotificationModule,
-        BreadcrumbModule,
-        ErrorStackModule,
-        ErrorModule,
-        VersionTagModule,
-        SecurityModule.forRoot(environment.auth),
-        MenuModule,
-    ],
-    providers: [
-        { provide: LocationStrategy, useClass: HashLocationStrategy },
-        ConfirmationService,
-        { provide: LocationStrategy, useClass: HashLocationStrategy },
-        { provide: HTTP_INTERCEPTORS, useClass: BlockUIInterceptor, multi: true}
-    ],
-    bootstrap: [AppComponent]
+  declarations: [
+    AppComponent,
+    TopbarComponent,
+    SidemenuComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    SharedModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

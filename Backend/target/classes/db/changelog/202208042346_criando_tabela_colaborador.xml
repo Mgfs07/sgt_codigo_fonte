@@ -27,4 +27,5 @@
         <addForeignKeyConstraint baseColumnNames="id_unidade" baseTableName="colaborador" constraintName="FK_COLABORADOR_ON_ID_UNIDADE" referencedColumnNames="id_unidade" referencedTableName="unidade"/>
         <createSequence sequenceName="seq_colaborador" startValue="1" incrementBy="1"/>
     </changeSet>
+
 </databaseChangeLog>
