@@ -3,8 +3,10 @@ package com.br.sgt.sgtproject.service.mapper;
 import com.br.sgt.sgtproject.domain.PagamentoColaborador;
 import com.br.sgt.sgtproject.service.dto.PagamentoColaboradorDTO;
 import org.mapstruct.InheritInverseConfiguration;
+import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
+@Mapper(componentModel = "spring")
 public interface PagamentoColaboradorMapper extends EntityMapper<PagamentoColaboradorDTO, PagamentoColaborador> {
 
 

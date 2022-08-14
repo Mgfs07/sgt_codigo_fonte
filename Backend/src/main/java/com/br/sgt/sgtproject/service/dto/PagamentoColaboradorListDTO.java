@@ -13,7 +13,7 @@ public class PagamentoColaboradorListDTO {
 
     private String nomeColaborador;
 
-    private String NomePagamento;
+    private String nomePagamento;
 
     private LocalDate dataPagamento;
 

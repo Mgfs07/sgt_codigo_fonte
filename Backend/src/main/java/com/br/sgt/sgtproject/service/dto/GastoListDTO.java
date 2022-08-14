@@ -11,7 +11,7 @@ public class GastoListDTO {
 
     private Integer id;
     private String motivo;
-    private String NomeColaborador;
+    private String nomeColaborador;
     private LocalDate dataDispesa;
     private Double valorRetirado;
     private String retiradoDoPagamento;

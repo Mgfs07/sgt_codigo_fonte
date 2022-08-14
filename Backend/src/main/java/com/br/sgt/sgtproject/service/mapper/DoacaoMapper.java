@@ -10,7 +10,7 @@ import org.mapstruct.Mapping;
 public interface DoacaoMapper extends EntityMapper<DoacaoDTO, Doacao> {
 
     @Override
-    @Mapping(source = "pagamento.id", target = "doadoParaPagamento")
+    @Mapping(source = "doadoPara.id", target = "doadoParaPagamento")
     DoacaoDTO toDto(Doacao doacao);
 
     @Override
