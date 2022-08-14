@@ -1,7 +1,7 @@
 
 9
 	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
-Å
+ÔøΩ
 QBackend/src/main/java/com/br/sgt/sgtproject/repository/ColaboradorRepository.java,7/b/7b03284c863295d958bb3143a85f91fea1c68930
 o
 ?Backend/src/main/java/com/br/sgt/sgtproject/SgtApplication.java,0/a/0a4fcfec1e8b52380c7285c8a12ef4dc1775b244
