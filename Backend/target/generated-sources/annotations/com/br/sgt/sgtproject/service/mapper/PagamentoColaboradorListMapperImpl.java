@@ -11,20 +11,20 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-08-14T01:31:23-0300",
+    date = "2022-08-14T21:54:08-0300",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.14.1 (Amazon.com Inc.)"
 )
 @Component
 public class PagamentoColaboradorListMapperImpl implements PagamentoColaboradorListMapper {
 
     @Override
-    public List<PagamentoColaborador> toEntity(List<PagamentoColaboradorListDTO> arg0) {
-        if ( arg0 == null ) {
+    public List<PagamentoColaborador> toEntity(List<PagamentoColaboradorListDTO> dtoList) {
+        if ( dtoList == null ) {
             return null;
         }
 
-        List<PagamentoColaborador> list = new ArrayList<PagamentoColaborador>( arg0.size() );
-        for ( PagamentoColaboradorListDTO pagamentoColaboradorListDTO : arg0 ) {
+        List<PagamentoColaborador> list = new ArrayList<PagamentoColaborador>( dtoList.size() );
+        for ( PagamentoColaboradorListDTO pagamentoColaboradorListDTO : dtoList ) {
             list.add( toEntity( pagamentoColaboradorListDTO ) );
         }
 
@@ -32,13 +32,13 @@ public class PagamentoColaboradorListMapperImpl implements PagamentoColaboradorL
     }
 
     @Override
-    public List<PagamentoColaboradorListDTO> toDto(List<PagamentoColaborador> arg0) {
-        if ( arg0 == null ) {
+    public List<PagamentoColaboradorListDTO> toDto(List<PagamentoColaborador> entityList) {
+        if ( entityList == null ) {
             return null;
         }
 
-        List<PagamentoColaboradorListDTO> list = new ArrayList<PagamentoColaboradorListDTO>( arg0.size() );
-        for ( PagamentoColaborador pagamentoColaborador : arg0 ) {
+        List<PagamentoColaboradorListDTO> list = new ArrayList<PagamentoColaboradorListDTO>( entityList.size() );
+        for ( PagamentoColaborador pagamentoColaborador : entityList ) {
             list.add( toDto( pagamentoColaborador ) );
         }
 

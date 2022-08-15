@@ -11,20 +11,20 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-08-14T01:31:23-0300",
+    date = "2022-08-14T21:54:08-0300",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.14.1 (Amazon.com Inc.)"
 )
 @Component
 public class GastoMapperImpl implements GastoMapper {
 
     @Override
-    public List<Gasto> toEntity(List<GastoDTO> arg0) {
-        if ( arg0 == null ) {
+    public List<Gasto> toEntity(List<GastoDTO> dtoList) {
+        if ( dtoList == null ) {
             return null;
         }
 
-        List<Gasto> list = new ArrayList<Gasto>( arg0.size() );
-        for ( GastoDTO gastoDTO : arg0 ) {
+        List<Gasto> list = new ArrayList<Gasto>( dtoList.size() );
+        for ( GastoDTO gastoDTO : dtoList ) {
             list.add( toEntity( gastoDTO ) );
         }
 
@@ -32,13 +32,13 @@ public class GastoMapperImpl implements GastoMapper {
     }
 
     @Override
-    public List<GastoDTO> toDto(List<Gasto> arg0) {
-        if ( arg0 == null ) {
+    public List<GastoDTO> toDto(List<Gasto> entityList) {
+        if ( entityList == null ) {
             return null;
         }
 
-        List<GastoDTO> list = new ArrayList<GastoDTO>( arg0.size() );
-        for ( Gasto gasto : arg0 ) {
+        List<GastoDTO> list = new ArrayList<GastoDTO>( entityList.size() );
+        for ( Gasto gasto : entityList ) {
             list.add( toDto( gasto ) );
         }
 

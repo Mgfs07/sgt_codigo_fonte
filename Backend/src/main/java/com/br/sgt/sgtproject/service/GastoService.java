@@ -45,13 +45,23 @@ public class GastoService {
 
     public ValoresDTO valorGasto(){
         ValoresDTO valoresDTO = new ValoresDTO();
-        valoresDTO.setMensalidade(repository.valorGasto(1));
-        valoresDTO.setCampori(repository.valorGasto(2));
-        valoresDTO.setCamisa(repository.valorGasto(3));
-        valoresDTO.setAcampEdessa(repository.valorGasto(4));
-        valoresDTO.setCaderno(repository.valorGasto(5));
-        valoresDTO.setLivre(repository.valorGasto(6));
-        valoresDTO.setDoacoes(repository.valorGasto(7));
+        valoresDTO.setMensalidade(recuperarTotal(1));
+        valoresDTO.setCampori(recuperarTotal(2));
+        valoresDTO.setCamisa(recuperarTotal(3));
+        valoresDTO.setAcampEdessa(recuperarTotal(4));
+        valoresDTO.setCaderno(recuperarTotal(5));
+        valoresDTO.setLivre(recuperarTotal(6));
+        valoresDTO.setDoacoes(recuperarTotal(7));
         return valoresDTO;
+    }
+
+    private Double recuperarTotal(Integer idPagamento){
+        Double totalCredito = 0D;
+        Double totalDebito = 0D;
+        totalCredito += repository.valorPagado(idPagamento);
+        totalCredito += repository.valorDoado(idPagamento);
+        totalDebito += repository.valorGastoDoPagamento(idPagamento);
+        totalDebito += repository.valorGasto(idPagamento);
+        return totalCredito - totalDebito;
     }
 }

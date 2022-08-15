@@ -3,7 +3,7 @@ application:
 
 spring:
     application:
-        name: srsservice
+        name: sgtservice
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
         url: jdbc:postgresql://localhost:5432/sgt
@@ -30,4 +30,5 @@ spring:
         change-log: classpath:/db/master.xml
 #        drop-first: true
 server:
-    port: 8081
+    port: 8080
+
