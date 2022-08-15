@@ -1,8 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { OpcaoMenuModel } from 'src/app/shared/models/opcao-menu.model';
 import { SidemenuModel } from 'src/app/shared/models/sidemenu.model';
-import {ColaboradorModule} from "../../modules/colaborador/colaborador.module";
-import {Router, RouterModule} from "@angular/router";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-sidemenu',

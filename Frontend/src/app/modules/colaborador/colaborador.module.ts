@@ -5,19 +5,19 @@ import { ColaboradorRoutingModule } from './colaborador-routing.module';
 import { ColaboradorComponent } from './pages/colaborador/colaborador.component';
 import { ColaboradorListaComponent } from './components/colaborador-lista/colaborador-lista.component';
 import { ColaboradorFormularioComponent } from './components/colaborador-formulario/colaborador-formulario.component';
-import {DialogModule} from "primeng/dialog";
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
     declarations: [
-    ColaboradorComponent,
-    ColaboradorListaComponent,
-    ColaboradorFormularioComponent
-  ],
+        ColaboradorComponent,
+        ColaboradorListaComponent,
+        ColaboradorFormularioComponent
+    ],
     imports: [
         CommonModule,
         ColaboradorRoutingModule,
-        DialogModule
+        SharedModule
     ]
 })
 export class ColaboradorModule { }
