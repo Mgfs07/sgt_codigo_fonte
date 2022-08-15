@@ -5,6 +5,7 @@ import { ColaboradorRoutingModule } from './colaborador-routing.module';
 import { ColaboradorComponent } from './pages/colaborador/colaborador.component';
 import { ColaboradorListaComponent } from './components/colaborador-lista/colaborador-lista.component';
 import { ColaboradorFormularioComponent } from './components/colaborador-formulario/colaborador-formulario.component';
+import {DialogModule} from "primeng/dialog";
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { ColaboradorFormularioComponent } from './components/colaborador-formula
   ],
     imports: [
         CommonModule,
-        ColaboradorRoutingModule
+        ColaboradorRoutingModule,
+        DialogModule
     ]
 })
 export class ColaboradorModule { }
