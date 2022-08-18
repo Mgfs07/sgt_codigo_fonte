@@ -3,17 +3,18 @@ package com.br.sgt.sgtproject.service.dto;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDate;
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
-public class PagamentoColaboradorDTO {
+public class PagamentoColaboradorDTO implements Serializable {
 
     private Integer id;
 
-    private Integer idColaborador; // mudar
+    private Integer idColaborador;
 
-    private Integer idPagamento; // mudar
+    private Integer idPagamento;
 
     private String observacao;
 
@@ -21,7 +22,7 @@ public class PagamentoColaboradorDTO {
 
     private Integer pagamentosRetirado; // mduar
 
-    private LocalDate dataPagamento;
+    private LocalDateTime dataPagamento;
 
     private Double valorPago;
 }

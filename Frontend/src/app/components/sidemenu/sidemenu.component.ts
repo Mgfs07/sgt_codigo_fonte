@@ -12,7 +12,10 @@ export class SidemenuComponent {
     @Input() public configuracaoMenuLateral?: SidemenuModel;
     @Input() public opcoes: OpcaoMenuModel[] = [
         new OpcaoMenuModel('pi pi-home', 'Início', () => window.alert('Casa!!!')),
-        new OpcaoMenuModel('pi pi-user', 'Colaborador', () => this.router.navigateByUrl('/colaborador'))
+        new OpcaoMenuModel('pi pi-user', 'Colaborador', () => this.router.navigateByUrl('/colaborador')),
+        new OpcaoMenuModel('pi pi-book', 'Pagamentos', () => this.router.navigateByUrl('/pagamento')),
+        new OpcaoMenuModel('pi pi-lock', 'Doacoes', () => this.router.navigateByUrl('/doacoes')),
+        new OpcaoMenuModel('pi pi-lock', 'Gastos', () => this.router.navigateByUrl('/gastos'))
     ];
 
     constructor(

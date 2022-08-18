@@ -49,7 +49,7 @@ public class ColaboradorResource {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @DeleteMapping("/dropdown")
+    @GetMapping("/select")
     public ResponseEntity<List<DropdownDTO>> dropdown(){
         List<DropdownDTO> dropdownDTOS = service.dropdonwColaborador();
         return new ResponseEntity<>(dropdownDTOS, HttpStatus.OK);

@@ -16,5 +16,5 @@ public class ValoresDTO implements Serializable {
     private Double caderno;
     private Double livre;
     private Double doacoes;
-
+    private Double total;
 }

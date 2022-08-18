@@ -52,6 +52,7 @@ public class GastoService {
         valoresDTO.setCaderno(recuperarTotal(5));
         valoresDTO.setLivre(recuperarTotal(6));
         valoresDTO.setDoacoes(recuperarTotal(7));
+        valoresDTO.setTotal(calcularTudo(valoresDTO));
         return valoresDTO;
     }
 
@@ -63,5 +64,20 @@ public class GastoService {
         totalDebito += repository.valorGastoDoPagamento(idPagamento);
         totalDebito += repository.valorGasto(idPagamento);
         return totalCredito - totalDebito;
+    }
+
+    private Double calcularTudo(ValoresDTO valoresDTO){
+        Double total = 0D;
+        total += valoresDTO.getAcampEdessa();
+        total += valoresDTO.getCaderno();
+        total += valoresDTO.getCampori();
+        total += valoresDTO.getDoacoes();
+        total += valoresDTO.getMensalidade();
+        total += valoresDTO.getLivre();
+        total += valoresDTO.getCamisa();
+        return total;
+
+
+
     }
 }

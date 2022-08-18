@@ -18,7 +18,7 @@ public class PagamentoResource {
 
     private final PagamentoService service;
 
-    @GetMapping()
+    @GetMapping("/select")
     public ResponseEntity<List<DropdownDTO>> buscar() {
         return new ResponseEntity<>(service.buscarPagamentos(), HttpStatus.OK);
     }

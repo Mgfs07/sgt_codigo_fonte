@@ -1,19 +1,22 @@
+# proto-file: 
+# proto-message: 
 
-9
-	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
-s
-CBackend/src/main/java/com/br/sgt/sgtproject/domain/Colaborador.java,c/f/cf794abb03d41a41f70f8ca817e449e23273031d
-n
->Backend/src/main/java/com/br/sgt/sgtproject/domain/Doacao.java,b/9/b90ca35b3ce9a621d98db0f5a6a63176de3a1baa
-q
-ABackend/src/main/java/com/br/sgt/sgtproject/domain/Pagamento.java,9/3/93df5500f754a2c67c91087a085ea40d6d108b35
-
-QBackend/src/main/java/com/br/sgt/sgtproject/repository/ColaboradorRepository.java,7/b/7b03284c863295d958bb3143a85f91fea1c68930
+
 |
 LBackend/src/main/java/com/br/sgt/sgtproject/domain/PagamentoColaborador.java,c/e/ce14fb44615022bacc4cdca6f1aa6226e6e1a427
+9
+	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+n
+>Backend/src/main/java/com/br/sgt/sgtproject/domain/Doacao.java,b/9/b90ca35b3ce9a621d98db0f5a6a63176de3a1baa
+ï¿½
+QBackend/src/main/java/com/br/sgt/sgtproject/repository/ColaboradorRepository.java,7/b/7b03284c863295d958bb3143a85f91fea1c68930
+o
+?Backend/src/main/java/com/br/sgt/sgtproject/SgtApplication.java,0/a/0a4fcfec1e8b52380c7285c8a12ef4dc1775b244
 m
 =Backend/src/main/java/com/br/sgt/sgtproject/domain/Gasto.java,8/8/882a2c49b36fc570982a19a1183946ecd3c27a03
 ?
 Backend/pom.xml,6/f/6f5a34a61856e01a5e5abd8b3142ee6665a5d397
-o
-?Backend/src/main/java/com/br/sgt/sgtproject/SgtApplication.java,0/a/0a4fcfec1e8b52380c7285c8a12ef4dc1775b244
+q
+ABackend/src/main/java/com/br/sgt/sgtproject/domain/Pagamento.java,9/3/93df5500f754a2c67c91087a085ea40d6d108b35
+s
+CBackend/src/main/java/com/br/sgt/sgtproject/domain/Colaborador.java,c/f/cf794abb03d41a41f70f8ca817e449e23273031d

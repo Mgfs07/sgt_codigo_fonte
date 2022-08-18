@@ -3,8 +3,16 @@ package com.br.sgt.sgtproject.domain;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
-import java.time.LocalDate;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -36,7 +44,7 @@ public class PagamentoColaborador {
     private Pagamento pagamentoRetirado;
 
     @Column(name = "data_pagamento", nullable = false)
-    private LocalDate dataPagamento;
+    private LocalDateTime dataPagamento;
 
     @Column(name = "valor_pago", nullable = false)
     private Double valorPago;

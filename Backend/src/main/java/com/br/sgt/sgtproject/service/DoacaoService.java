@@ -43,16 +43,4 @@ public class DoacaoService {
         Doacao doacao = mapper.toEntity(dto);
         return mapper.toDto(repository.save(doacao));
     }
-
-    public ValoresDTO valorDoacao(){
-        ValoresDTO valoresDTO = new ValoresDTO();
-        valoresDTO.setMensalidade(repository.valorDoado(1));
-        valoresDTO.setCampori(repository.valorDoado(2));
-        valoresDTO.setCamisa(repository.valorDoado(3));
-        valoresDTO.setAcampEdessa(repository.valorDoado(4));
-        valoresDTO.setCaderno(repository.valorDoado(5));
-        valoresDTO.setLivre(repository.valorDoado(6));
-        valoresDTO.setDoacoes(repository.valorDoado(7));
-        return valoresDTO;
-    }
 }

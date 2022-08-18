@@ -3,9 +3,11 @@ package com.br.sgt.sgtproject.service.dto;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
-public class ColaboradorDTO {
+public class ColaboradorDTO implements Serializable {
 
     private Integer id;
     private String nomeColaborador;
