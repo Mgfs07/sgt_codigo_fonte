@@ -1,0 +1,43 @@
+<div class="col-12 flex justify-content-start">
+    <button pButton type="button" icon="ui-icon-plus" class="ui-button-success button-save-new" iconPos="left"
+            label="Nova Doação" (click)="novoPagamento()"></button>
+</div>
+<div class="card">
+    <p-table [columns]="colunas" [value]="gastoList" [paginator]="true" [rows]="10" [responsive]="true"
+             sortMode="multiple">
+        <ng-template pTemplate="header" let-colunas>
+            <tr>
+                <th id="titulo-colunas" *ngFor="let col of colunas" [pSortableColumn]="col.field">
+                    {{col.header}}
+                    <ng-container>
+                        <p-sortIcon [field]="col.field"></p-sortIcon>
+                    </ng-container>
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-colunas="columns">
+            <tr>
+                <td *ngFor="let col of colunas">
+                    <ng-container *ngIf="!isData(col.field) && !isValor(col.field)">
+                        {{rowData[col.field]}}
+                    </ng-container>
+                    <ng-container *ngIf="isData(col.field)">
+                        <div class="flex icone w100">
+                            {{rowData[col.field] | date: "dd/MM/yyyy"}}
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="isValor(col.field)">
+                        <div class="flex icone w100">
+                            {{ 'R$ '+ rowData[col.field] + ',00'}}
+                        </div>
+                    </ng-container>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+<p-dialog [(visible)]="display" [modal]="true" [contentStyle]="{'max-height':'100%'}" (onHide)="resetarForm()">
+    <app-gastos [gastoList]="gastoList"
+                (respForm)="fecharModal()"></app-gastos>
+</p-dialog>
+

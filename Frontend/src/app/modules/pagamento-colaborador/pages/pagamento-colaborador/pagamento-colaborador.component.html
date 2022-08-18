@@ -1,0 +1,51 @@
+<div class="ui-g-8">
+    <form [formGroup]="formPagamento" class="ui-fluid ui-g-8">
+        <div class="field col-12" style="padding-bottom: 15px">
+            <p-dropdown formControlName="idColaborador" [filter]="true" [options]="colaboradorDrop" placeholder="Selecione o clientes"
+                        appendTo="body">
+                <ng-template let-item pTemplate="item">
+                    <div class="ui-helper-clearfix div-itens" >
+                        <div class= "nome-colaborador">{{item.label}}</div>
+                    </div>
+                </ng-template>
+            </p-dropdown>
+        </div>
+        <div class="field col-12" style="padding-bottom: 15px">
+            <p-dropdown formControlName="idPagamento" [options]="pagamentoDrop" placeholder="Selecione o clientes"
+                        appendTo="body">
+            </p-dropdown>
+        </div>
+        <div class="field col-12" style="padding-bottom: 15px">
+            <input type="text" pInputText formControlName="observacao"/>
+        </div>
+        <div style="padding-bottom: 15px">
+            <p-checkbox (onChange)="abrirGrid(vizualizar)" name="Retirado de algum lugar?" [binary]="true" formControlName="retiradoLugar"></p-checkbox>
+            <div class="p-grid" *ngIf="vizualizar">
+                <p-dropdown formControlName="idPagamento" [options]="pagamentoRetirado" placeholder="Selecione o clientes"
+                            appendTo="body">
+                </p-dropdown>
+            </div>
+        </div>
+        <div class="field" style="padding-bottom: 15px">
+            <label for="dataPagamento">Data do Pagamento</label>
+            <p-calendar
+                id="dataPagamento"
+                formControlName="dataPagamento"
+                dateFormat="dd/mm/yy"
+                appendTo="body"
+                [yearNavigator]="true"
+                [defaultDate]="dataRegistro"
+            ></p-calendar>
+        </div>
+        <div class="field col-12" style="padding-bottom: 15px">
+            <label>VALOR</label>
+            <p-inputNumber formControlName="valorPago" [showButtons]="true" mode="currency" currency="BRL"></p-inputNumber>
+        </div>
+    </form>
+</div>
+<div class="flex justify-content-end" style="display: flex; justify-content: space-between;">
+    <button type="button" pButton icon="pi pi-times" label="Cancelar" (click)="fecharForm()"
+            class="ui-button-secondary mr-3"></button>
+    <button type="button" pButton icon="pi pi-check" label="Salvar" (click)="this.salvarFormulario()"
+            class="button-save-new"></button>
+</div>

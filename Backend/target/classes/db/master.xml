@@ -13,4 +13,5 @@
     <include file="db/changelog/202208042353_criando_tabela_pagamento_colaborador.xml"/>
     <include file="db/changelog/202208042355_criando_tabela_gastos.xml"/>
     <include file="db/changelog/202208042356_criando_tabela_doacoes.xml"/>
+    <include file="db/changelog/202208172325_alterando_o_tipo_data_table_colaborador_pagamento.xml"/>
 </databaseChangeLog>
