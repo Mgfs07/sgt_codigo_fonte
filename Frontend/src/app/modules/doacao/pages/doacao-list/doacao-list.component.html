@@ -3,7 +3,7 @@
             label="Nova Doação" (click)="novoPagamento()"></button>
 </div>
 <div class="card">
-    <p-table [columns]="coluna" [value]="doacoes" [paginator]="true" [rows]="10" [responsive]="true"
+        <p-table [columns]="coluna" [value]="doacoes" [paginator]="true" [rows]="5" [responsive]="true"
              sortMode="multiple">
         <ng-template pTemplate="header" let-colunas>
             <tr>
@@ -29,6 +29,13 @@
                     <ng-container *ngIf="isValor(col.field)">
                         <div class="flex icone w100">
                             {{ 'R$ '+ rowData[col.field] + ',00'}}
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="col.field === 'acoes' ">
+                        <div class="flex justify-content-center p-0">
+                            <button pButton icon="pi pi-eye"
+                                    class="botao-secundario button-view sem-fundo flex align-items-center justify-content-center m-1"
+                                    (click)="carregar(rowData.id)" ></button>
                         </div>
                     </ng-container>
                 </td>

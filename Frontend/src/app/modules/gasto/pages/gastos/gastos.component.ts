@@ -14,7 +14,7 @@ import {ValoresModel} from "../../../../model/valores.model";
 })
 export class GastosComponent implements OnInit {
 
-    formPagamento: FormGroup;
+    formGasto: FormGroup;
     novoPagamento: GastoModel;
     valoresGastos: ValoresModel;
     listarPagamento: boolean = false;
@@ -38,11 +38,10 @@ export class GastosComponent implements OnInit {
       this.novoFormulario();
       this.buscarColaborador();
       this.buscarPagamentos();
-      this.buscarValores();
   }
 
     novoFormulario(): void {
-        this.formPagamento = this.fb.group({
+        this.formGasto = this.fb.group({
             id: [null],
             motivo: ['', [Validators.required]],
             descricao: ['', [Validators.required]],
@@ -59,6 +58,7 @@ export class GastosComponent implements OnInit {
             (data) => {
                 this.pagamentoDrop = data;
                 this.pagamentoRetirado = data;
+                this.buscarValores();
             });
     }
 
@@ -70,7 +70,7 @@ export class GastosComponent implements OnInit {
     }
 
     limparForm(): void {
-        this.formPagamento.reset();
+        this.formGasto.reset();
     }
 
     buscarValores(): void {
@@ -78,28 +78,31 @@ export class GastosComponent implements OnInit {
     }
 
     saveteste(): void {
-        console.log(this.novoPagamento = this.formPagamento.getRawValue())
+        console.log(this.novoPagamento = this.formGasto.getRawValue())
 
     }
 
     salvarFormulario(): void {
-        this.novoPagamento = this.formPagamento.getRawValue();
+        this.novoPagamento = this.formGasto.getRawValue();
         this.gastoService.salvar(this.novoPagamento).subscribe(
             () => {
                 this.fecharForm();
                 this.listarPagamento = true
+                this.buscarValores();
             }, error => console.log(error))
     }
 
     fecharForm(): void {
-        this.formPagamento.reset();
+        this.formGasto.reset();
+        this.buscarValores();
         this.respForm.emit();
     }
 
-    editarPagamento(id: number): void {
+    editarGasto(id: number): void {
         this.gastoService.findById(id)
             .subscribe(response => {
-                this.formPagamento.patchValue(response);
+                response.dataDispesa = new Date(response.dataDispesa + 'T00:00');
+                this.formGasto.patchValue(response);
             });
     }
 

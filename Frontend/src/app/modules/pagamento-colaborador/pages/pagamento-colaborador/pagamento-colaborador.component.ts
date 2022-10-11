@@ -13,7 +13,7 @@ import {PagamentoColaboradorModel} from "../../../../model/pagamento-colaborador
 })
 export class PagamentoColaboradorComponent implements OnInit {
 
-    formPagamento: FormGroup;
+    formPagamentoColaborador: FormGroup;
     novoPagamento: PagamentoColaboradorModel;
     listarPagamento: boolean = false;
     colaboradorDrop: SelectItem[];
@@ -43,7 +43,7 @@ export class PagamentoColaboradorComponent implements OnInit {
     }
 
     novoFormulario(): void {
-        this.formPagamento = this.fb.group({
+        this.formPagamentoColaborador = this.fb.group({
             id: [null],
             idColaborador: ['', [Validators.required]],
             idPagamento: ['', [Validators.required]],
@@ -71,16 +71,16 @@ export class PagamentoColaboradorComponent implements OnInit {
     }
 
     limparForm(): void {
-        this.formPagamento.reset();
+        this.formPagamentoColaborador.reset();
     }
 
     saveteste(): void {
-        console.log(this.novoPagamento = this.formPagamento.getRawValue())
+        console.log(this.novoPagamento = this.formPagamentoColaborador.getRawValue())
 
     }
 
     salvarFormulario(): void {
-        this.novoPagamento = this.formPagamento.getRawValue();
+        this.novoPagamento = this.formPagamentoColaborador.getRawValue();
         this.pagamentoColaboradorService.salvar(this.novoPagamento).subscribe(
             () => {
                 this.fecharForm();
@@ -89,14 +89,14 @@ export class PagamentoColaboradorComponent implements OnInit {
     }
 
     fecharForm(): void {
-        this.formPagamento.reset();
+        this.formPagamentoColaborador.reset();
         this.respForm.emit();
     }
 
-    editarPagamento(id: number): void {
+    editarPagamentoColaborador(id: number): void {
         this.pagamentoColaboradorService.findById(id)
             .subscribe(response => {
-                this.formPagamento.patchValue(response);
+                this.formPagamentoColaborador.patchValue(response);
             });
     }
 

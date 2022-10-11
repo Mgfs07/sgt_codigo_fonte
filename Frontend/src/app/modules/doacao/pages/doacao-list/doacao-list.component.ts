@@ -17,7 +17,7 @@ export class DoacaoListComponent implements OnInit {
 
     @Input() display = false;
     @Output() recarregarListagem: EventEmitter<any> = new EventEmitter;
-    @ViewChild(DoacaoComponent) formDoacao: any;
+    @ViewChild(DoacaoComponent) formDoacao: DoacaoComponent;
 
     constructor(
         private doacoesService: DoacoesService,
@@ -36,6 +36,7 @@ export class DoacaoListComponent implements OnInit {
             new ColunaModel('doadoParaPagamento', 'Doado Para'),
             new ColunaModel('valorDoado', 'Valor'),
             new ColunaModel('dataDoacao', 'Data'),
+            new ColunaModel('acoes', 'Ações', '10%' )
         ];
     }
 
@@ -75,6 +76,12 @@ export class DoacaoListComponent implements OnInit {
 
     resetarForm(): void {
         this.formDoacao.fecharForm();
+    }
+
+    carregar(idDoacao: number): void {
+        this.display = true;
+        this.formDoacao.editarPagamento(idDoacao);
+        this.formDoacao.formPagamento.enable();
     }
 
 }

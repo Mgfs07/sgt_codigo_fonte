@@ -79,6 +79,7 @@ export class DoacaoComponent implements OnInit {
     editarPagamento(id: number): void {
         this.doacoesService.findById(id)
             .subscribe(response => {
+                response.dataDoacao = new Date(response.dataDoacao + 'T00:00');
                 this.formPagamento.patchValue(response);
             });
     }

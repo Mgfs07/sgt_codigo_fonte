@@ -34,6 +34,7 @@ export class GastosListComponent implements OnInit {
             new ColunaModel('dataDispesa', 'Data'),
             new ColunaModel('valorRetirado', 'Valor'),
             new ColunaModel('retiradoDoPagamento', 'Retirado De'),
+            new ColunaModel('acoes', 'Ações', '10%' )
         ];
     }
 
@@ -54,12 +55,12 @@ export class GastosListComponent implements OnInit {
     }
 
     editar(id: number): void {
-        this.formGasto.editarPagamento(id);
+        this.formGasto.editarGasto(id);
         this.display = true;
     }
 
     novoPagamento(): void {
-        this.formGasto.formPagamento.reset();
+        this.formGasto.formGasto.reset();
         this.display = true;
     }
 
@@ -73,6 +74,12 @@ export class GastosListComponent implements OnInit {
 
     resetarForm(): void {
         this.formGasto.fecharForm();
+    }
+
+    carregar(idPagamento: number): void {
+        this.display = true;
+        this.formGasto.editarGasto(idPagamento);
+        this.formGasto.formGasto.enable();
     }
 
 }
