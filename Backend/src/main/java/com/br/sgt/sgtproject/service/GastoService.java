@@ -47,7 +47,7 @@ public class GastoService {
         ValoresDTO valoresDTO = new ValoresDTO();
         valoresDTO.setMensalidade(recuperarTotal(1));
         valoresDTO.setCampori(recuperarTotal(2));
-        valoresDTO.setCamisa(recuperarTotal(3));
+        valoresDTO.setCamisa((double)0);
         valoresDTO.setAcampEdessa(recuperarTotal(4));
         valoresDTO.setCaderno(recuperarTotal(5));
         valoresDTO.setLivre(recuperarTotal(6));
@@ -76,8 +76,6 @@ public class GastoService {
         total += valoresDTO.getLivre();
         total += valoresDTO.getCamisa();
         return total;
-
-
 
     }
 }

@@ -30,6 +30,7 @@
                         "styles": [
                             "node_modules/primeicons/primeicons.css",
                             "node_modules/primeng/resources/primeng.css",
+                            "node_modules/primeflex/primeflex.css",
                             "node_modules/primeng/resources/themes/arya-orange/theme.css",
                             "src/styles.scss"
                         ],
