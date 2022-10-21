@@ -17,6 +17,7 @@ export class PagamentosColaboradorListComponent implements OnInit {
     @Input() display = false;
     @Output() recarregarListagem: EventEmitter<any> = new EventEmitter;
     @ViewChild(PagamentoColaboradorComponent) formPagamentoColaborador: PagamentoColaboradorComponent;
+    sortOrder: 'multiple';
 
 
 
@@ -48,7 +49,7 @@ export class PagamentosColaboradorListComponent implements OnInit {
     }
 
     public obterPagamentoColaborador(): void {
-        this.pagamentoColaboradorService.findAll().subscribe(
+        this.pagamentoColaboradorService.buscarTodos().subscribe(
             (data) => {
                 this.pagamentoColaborador = data;
             }
@@ -71,6 +72,13 @@ export class PagamentosColaboradorListComponent implements OnInit {
             this.obterPagamentoColaborador();
             this.formPagamentoColaborador.listarPagamento = false;
         }
+    }
+
+    deletar(id: number) : void {
+        console.log(id);
+        this.pagamentoColaboradorService.deletar(id).subscribe(() => {
+            this.obterPagamentoColaborador();
+        }, error => {})
     }
 
     resetarForm(): void {

@@ -1,12 +1,14 @@
 <div class="ui-g-8">
     <form [formGroup]="formPagamento" class="ui-fluid ui-g-8">
-        <div class="field col-12" style="padding-bottom: 15px">
+        <div class="field col-6">
+            <label>Nome do Doador</label>
             <input type="text" pInputText formControlName="nomeDoador"/>
         </div>
-        <div class="field col-12" style="padding-bottom: 15px">
+        <div class="field col-6">
+            <label>Observacao</label>
             <input type="text" pInputText formControlName="observacao"/>
         </div>
-        <div class="field" style="padding-bottom: 15px">
+        <div class="field col-6">
             <label for="dataDoacao">Data do Pagamento</label>
             <p-calendar
                 id="dataDoacao"
@@ -17,12 +19,12 @@
                 [defaultDate]="dataRegistro"
             ></p-calendar>
         </div>
-        <div class="field col-12" style="padding-bottom: 15px">
-            <label>VALOR</label>
+        <div class="field col-6">
+            <label>Valor</label>
             <p-inputNumber formControlName="valorDoado" [showButtons]="true" mode="currency" currency="BRL"></p-inputNumber>
         </div>
-        <div class="field col-12" style="padding-bottom: 15px">
-            <label>DOADO PARA</label>
+        <div class="field col-6">
+            <label>Doado para: </label>
             <p-dropdown formControlName="doadoParaPagamento" [options]="pagamentoDrop" placeholder="Selecione o clientes"
                         appendTo="body">
             </p-dropdown>

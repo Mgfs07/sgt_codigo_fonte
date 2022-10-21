@@ -4,7 +4,6 @@ import com.br.sgt.sgtproject.domain.Doacao;
 import com.br.sgt.sgtproject.repository.DoacaoRepository;
 import com.br.sgt.sgtproject.service.dto.DoacaoDTO;
 import com.br.sgt.sgtproject.service.dto.DoacaoListDTO;
-import com.br.sgt.sgtproject.service.dto.ValoresDTO;
 import com.br.sgt.sgtproject.service.mapper.DoacaoListMapper;
 import com.br.sgt.sgtproject.service.mapper.DoacaoMapper;
 import com.br.sgt.sgtproject.service.util.MensagemDoacoesUtil;
@@ -14,7 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -42,5 +40,9 @@ public class DoacaoService {
     public DoacaoDTO salvar(DoacaoDTO dto){
         Doacao doacao = mapper.toEntity(dto);
         return mapper.toDto(repository.save(doacao));
+    }
+
+    public void deletar(Integer id){
+        repository.deleteById(id);
     }
 }

@@ -12,7 +12,7 @@ import java.util.Optional;
 @Repository
 public interface ColaboradorRepository extends JpaRepository<Colaborador, Integer> {
 
-    Optional<Colaborador> findByNomeColaborador(String nome);
+    Optional<Colaborador> findByNomeColaboradorAndId(String nome, Integer id);
 
     @Query("select new com.br.sgt.sgtproject.service.dto.DropdownDTO(c.nomeColaborador, c.id) " +
             "from Colaborador c")

@@ -11,7 +11,7 @@ export abstract class BaseEntityService<T, Y> {
 
     abstract getEntity(): string;
 
-    insert(entity: T): Observable<T> {
+    salvar(entity: T): Observable<T> {
         return this.http.post<T>(this.resourceUrl, entity);
     }
 
@@ -19,19 +19,19 @@ export abstract class BaseEntityService<T, Y> {
         return this.http.get<T>(this.resourceUrl + '/' + id);
     }
 
-    findAll(): Observable<T[]> {
-        return this.http.get<T[]>(this.resourceUrl);
+    buscarTodos(): Observable<Y[]> {
+        return this.http.get<Y[]>(this.resourceUrl);
     }
 
-    update(entity: T): Observable<T> {
+    atualizar(entity: T): Observable<T> {
         return this.http.put<T>(this.resourceUrl, entity);
     }
 
-    delete(id: number): Observable<void> {
+    deletar(id: number): Observable<void> {
         return this.http.delete<void>(this.resourceUrl + '/' + id);
     }
 
-    findAllDropDown(): Observable<SelectItem[]> {
+    buscarDropdown(): Observable<SelectItem[]> {
         return this.http.get<SelectItem[]>(this.resourceUrl + '/select');
     }
 

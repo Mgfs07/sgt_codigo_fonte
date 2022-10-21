@@ -31,7 +31,7 @@
             </p-dropdown>
         </div>
     </div>
-    <div class="field" style="padding-bottom: 15px">
+    <div class="field col-6">
         <label for="dataPagamento">Data do Pagamento </label>
         <p-calendar
             id="dataPagamento"
@@ -42,8 +42,8 @@
             [defaultDate]="dataRegistro"
         ></p-calendar>
     </div>
-    <div class="field col-12" style="padding-bottom: 15px">
-        <label>VALOR </label>
+    <div class="field col-6">
+        <label>Valor</label>
         <p-inputNumber formControlName="valorPago" [showButtons]="true" mode="currency" currency="BRL"></p-inputNumber>
     </div>
 </form>

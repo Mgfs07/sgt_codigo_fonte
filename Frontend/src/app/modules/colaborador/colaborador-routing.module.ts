@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ColaboradorComponent } from './pages/colaborador/colaborador.component';
+import { ColaboradorComponent } from './pages/colaborador-list/colaborador.component';
 
 const routes: Routes = [
     { path: '', component: ColaboradorComponent }

@@ -1,38 +1,20 @@
 import {Injectable} from '@angular/core';
 import {ColaboradoresListModel} from "../../model/colaboradores-list.model";
 import {ColaboradorModel} from "../../model/colaborador.model";
-import {Observable} from "rxjs";
-import {SelectItem} from "primeng/api";
 import {HttpClient} from "@angular/common/http";
-import {environment} from "../../../environments/environment";
+import {BaseEntityService} from "./base-entity-service";
 
 @Injectable({
   providedIn: 'root'
 })
-export class ColaboradorService{
+export class ColaboradorService extends BaseEntityService<ColaboradorModel, ColaboradoresListModel>{
 
-  constructor(private http: HttpClient) {
+  constructor(protected override http: HttpClient) {
+      super(http);
 
   }
-    resourceUrl = environment.apiUrl + '/colaboradores';
-
-    insert(entity: ColaboradorModel): Observable<ColaboradorModel> {
-        return this.http.post<ColaboradorModel>(this.resourceUrl, entity);
+   override getEntity(): string {
+        return "colaboradores";
     }
 
-    findById(id: number): Observable<ColaboradorModel> {
-        return this.http.get<ColaboradorModel>(this.resourceUrl + '/' + id);
-    }
-
-    findAll(): Observable<ColaboradoresListModel[]> {
-        return this.http.get<ColaboradoresListModel[]>(this.resourceUrl);
-    }
-
-    update(entity: ColaboradorModel): Observable<ColaboradorModel> {
-        return this.http.put<ColaboradorModel>(this.resourceUrl, entity);
-    }
-
-    findAllDropDown(): Observable<SelectItem[]> {
-        return this.http.get<SelectItem[]>(this.resourceUrl + '/select');
-    }
 }

@@ -42,4 +42,8 @@ public class PagamentoColaboradorService {
         return mapper.toDto(repository.save(pagamentoColaborador));
     }
 
+    public void deletar (Integer id){
+        repository.deleteById(id);
+    }
+
 }

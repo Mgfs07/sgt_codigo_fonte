@@ -41,4 +41,10 @@ public class DoacaoResource {
         DoacaoDTO doacaoDTO = service.salvar(dto);
         return new ResponseEntity<>(doacaoDTO, HttpStatus.CREATED);
     }
+
+    @DeleteMapping("{idDoacao}")
+    public ResponseEntity<Void> deletar(@PathVariable("idDoacao") Integer idDoacao){
+        service.deletar(idDoacao);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }

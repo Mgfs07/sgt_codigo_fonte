@@ -11,7 +11,7 @@ import {Router} from "@angular/router";
 export class SidemenuComponent {
     @Input() public configuracaoMenuLateral?: SidemenuModel;
     @Input() public opcoes: OpcaoMenuModel[] = [
-        new OpcaoMenuModel('pi pi-home', 'Início', () => window.alert('Casa!!!')),
+        new OpcaoMenuModel('pi pi-home', 'Início', () => this.router.navigateByUrl('/home')),
         new OpcaoMenuModel('pi pi-user', 'Colaborador', () => this.router.navigateByUrl('/colaborador')),
         new OpcaoMenuModel('pi pi-money-bill', 'Pagamentos', () => this.router.navigateByUrl('/pagamento')),
         new OpcaoMenuModel('pi pi-eject', 'Doacoes', () => this.router.navigateByUrl('/doacoes')),

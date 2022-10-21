@@ -50,4 +50,10 @@ public class GastoResource {
         GastoDTO doacoesDTO = service.salvar(dto);
         return new ResponseEntity<>(doacoesDTO, HttpStatus.CREATED);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletar(@Valid @PathVariable("id") Integer id ){
+        service.deletar(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }

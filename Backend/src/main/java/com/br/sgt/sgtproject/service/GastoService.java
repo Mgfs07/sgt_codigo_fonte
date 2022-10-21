@@ -78,4 +78,8 @@ public class GastoService {
         return total;
 
     }
+
+    public void deletar(Integer id){
+        repository.deleteById(id);
+    }
 }

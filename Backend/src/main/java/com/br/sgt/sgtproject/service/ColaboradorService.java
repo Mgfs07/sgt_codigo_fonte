@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -40,13 +41,17 @@ public class ColaboradorService {
     }
 
     public ColaboradorDTO salvar(ColaboradorDTO dto){
-        repository.findByNomeColaborador(dto.getNomeColaborador())
-                .ifPresent(colaborador -> {
-            throw new ResponseStatusException(HttpStatus.CONFLICT,
-                    MensagemColaboradorUtil.COLABORADOR_JA_CADASTRADO);
-        });
+        verificarNomeDuplicado(dto);
         Colaborador colaborador = mapper.toEntity(dto);
         return mapper.toDto(repository.save(colaborador));
+    }
+
+    private void verificarNomeDuplicado(ColaboradorDTO dto){
+        Optional<Colaborador> colaborador = repository.findByNomeColaboradorAndId(dto.getNomeColaborador(), dto.getId());
+        if(Boolean.FALSE.equals(colaborador.isPresent())){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+                    MensagemColaboradorUtil.COLABORADOR_JA_CADASTRADO);
+        }
     }
 
     public void deletar(Integer id){

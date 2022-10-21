@@ -6,6 +6,7 @@ import {PagamentosService} from "../../../../shared/service/pagamentos.service";
 import {GastosService} from "../../../../shared/service/gastos.service";
 import {GastoModel} from "../../../../model/gasto.model";
 import {ValoresModel} from "../../../../model/valores.model";
+import {FileUpload} from "primeng/fileupload";
 
 @Component({
   selector: 'app-gastos',
@@ -21,13 +22,14 @@ export class GastosComponent implements OnInit {
     colaboradorDrop: SelectItem[];
     pagamentoDrop: SelectItem[];
     pagamentoRetirado: SelectItem[];
-    dataRegistro: Date = new Date()
+    dataRegistro: Date = new Date();
+    file: FileReader = new FileReader();
+    formato = '';
 
 
     @Input() gastoList: any;
     @Output() respForm: EventEmitter<boolean> = new EventEmitter();
-    @ViewChild("valor") valor: number;
-    @ViewChild('vizualizar') vizualizar: boolean;
+    @ViewChild('fileUpload') fileUpload: FileUpload;
 
   constructor(private fb: FormBuilder,
               private colaboradorService: ColaboradorService,
@@ -54,7 +56,7 @@ export class GastosComponent implements OnInit {
     }
 
     buscarPagamentos(): void {
-        this.pagamentosService.findAllDropDown().subscribe(
+        this.pagamentosService.buscarDropdown().subscribe(
             (data) => {
                 this.pagamentoDrop = data;
                 this.pagamentoRetirado = data;
@@ -63,24 +65,16 @@ export class GastosComponent implements OnInit {
     }
 
     buscarColaborador(): void {
-        this.colaboradorService.findAllDropDown().subscribe(
+        this.colaboradorService.buscarDropdown().subscribe(
             (data) => {
                 this.colaboradorDrop = data;
             });
-    }
-
-    limparForm(): void {
-        this.formGasto.reset();
     }
 
     buscarValores(): void {
       this.gastoService.valores().subscribe((data) => this.valoresGastos = data)
     }
 
-    saveteste(): void {
-        console.log(this.novoPagamento = this.formGasto.getRawValue())
-
-    }
 
     salvarFormulario(): void {
         this.novoPagamento = this.formGasto.getRawValue();
@@ -105,12 +99,4 @@ export class GastosComponent implements OnInit {
                 this.formGasto.patchValue(response);
             });
     }
-
-    abrirGrid(visualizar: boolean){
-        if(visualizar){
-            return this.vizualizar = false;
-        }
-        return this.vizualizar = true;
-    }
-
 }

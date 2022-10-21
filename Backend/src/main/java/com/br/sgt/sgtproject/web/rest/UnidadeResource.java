@@ -18,7 +18,7 @@ public class UnidadeResource {
 
     private final UnidadeService service;
 
-    @GetMapping
+    @GetMapping("/select")
     public ResponseEntity<List<DropdownDTO>> buscar() {
         return new ResponseEntity<>(service.buscarUnidades(), HttpStatus.OK);
     }

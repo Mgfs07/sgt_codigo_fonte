@@ -19,12 +19,12 @@ export class PagamentoColaboradorComponent implements OnInit {
     colaboradorDrop: SelectItem[];
     pagamentoDrop: SelectItem[];
     pagamentoRetirado: SelectItem[];
-    dataRegistro: Date = new Date()
+    dataRegistro: Date = new Date();
 
 
     @Input() colaboradorModel: any;
     @Output() respForm: EventEmitter<boolean> = new EventEmitter();
-    @ViewChild("valor") valor: number;
+    @ViewChild('valor') valor: number;
     @ViewChild('vizualizar') vizualizar: boolean;
 
 
@@ -56,7 +56,7 @@ export class PagamentoColaboradorComponent implements OnInit {
     }
 
     buscarPagamentos(): void {
-        this.pagamentosService.findAllDropDown().subscribe(
+        this.pagamentosService.buscarDropdown().subscribe(
             (data) => {
                 this.pagamentoDrop = data;
                 this.pagamentoRetirado = data;
@@ -64,7 +64,7 @@ export class PagamentoColaboradorComponent implements OnInit {
     }
 
     buscarColaborador(): void {
-        this.colaboradorService.findAllDropDown().subscribe(
+        this.colaboradorService.buscarDropdown().subscribe(
             (data) => {
                 this.colaboradorDrop = data;
             });
@@ -87,6 +87,7 @@ export class PagamentoColaboradorComponent implements OnInit {
                 this.listarPagamento = true
             }, error => console.log(error))
     }
+
 
     fecharForm(): void {
         this.formPagamentoColaborador.reset();

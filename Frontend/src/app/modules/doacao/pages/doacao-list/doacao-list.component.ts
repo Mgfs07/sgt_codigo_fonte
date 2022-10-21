@@ -41,7 +41,7 @@ export class DoacaoListComponent implements OnInit {
     }
 
     public obterGastos(): void {
-        this.doacoesService.findAll().subscribe(
+        this.doacoesService.buscarTodos().subscribe(
             (data) => {
                 this.doacoes = data;
             }
@@ -64,6 +64,12 @@ export class DoacaoListComponent implements OnInit {
     novoPagamento(): void {
         this.formDoacao.formPagamento.reset();
         this.display = true;
+    }
+
+    deletar(id: number) : void {
+        this.doacoesService.deletar(id).subscribe(() => {
+            this.obterGastos();
+        }, error => {})
     }
 
     public fecharModal(): void {

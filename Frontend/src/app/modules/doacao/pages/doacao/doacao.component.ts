@@ -15,7 +15,6 @@ export class DoacaoComponent implements OnInit {
     formPagamento: FormGroup;
     novoPagamento: DoacaoModel;
     listarPagamento: boolean = false;
-    colaboradorDrop: SelectItem[];
     pagamentoDrop: SelectItem[];
     pagamentoRetirado: SelectItem[];
     dataRegistro: Date = new Date()
@@ -23,7 +22,7 @@ export class DoacaoComponent implements OnInit {
 
     @Input() doacaoList: any;
     @Output() respForm: EventEmitter<boolean> = new EventEmitter();
-    @ViewChild("valor") valor: number;
+    @ViewChild('valor') valor: number;
 
     constructor(private fb: FormBuilder,
                 private pagamentosService: PagamentosService,
@@ -46,7 +45,7 @@ export class DoacaoComponent implements OnInit {
     }
 
     buscarPagamentos(): void {
-        this.pagamentosService.findAllDropDown().subscribe(
+        this.pagamentosService.buscarDropdown().subscribe(
             (data) => {
                 this.pagamentoDrop = data;
                 this.pagamentoRetirado = data;

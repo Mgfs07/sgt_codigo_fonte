@@ -47,7 +47,7 @@ export class GastosListComponent implements OnInit {
     }
 
     public obterPagamentoColaborador(): void {
-        this.gastoService.findAll().subscribe(
+        this.gastoService.buscarTodos().subscribe(
             (data) => {
                 this.gastoList = data;
             }
@@ -80,6 +80,12 @@ export class GastosListComponent implements OnInit {
         this.display = true;
         this.formGasto.editarGasto(idPagamento);
         this.formGasto.formGasto.enable();
+    }
+
+    deletar(id: number) : void {
+        this.gastoService.deletar(id).subscribe(() => {
+            this.obterPagamentoColaborador();
+        }, error => {})
     }
 
 }

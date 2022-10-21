@@ -41,4 +41,10 @@ public class PagamentoColaboradorResource {
         PagamentoColaboradorDTO pagamentoColaborador = service.salvar(dto);
         return new ResponseEntity<>(pagamentoColaborador, HttpStatus.CREATED);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletar(@Valid @PathVariable("id") Integer id ){
+        service.deletar(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }

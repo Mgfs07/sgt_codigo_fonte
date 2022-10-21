@@ -9,16 +9,12 @@ import {ValoresModel} from "../../model/valores.model";
 @Injectable({
   providedIn: 'root'
 })
-export class GastosService extends BaseEntityService<GastoListModel, GastoModel> {
+export class GastosService extends BaseEntityService<GastoModel, GastoListModel> {
 
     constructor(protected override http: HttpClient) { super(http);}
 
     override getEntity(): string {
         return 'gastos';
-    }
-
-    salvar(entity: GastoModel): Observable<GastoModel> {
-        return this.http.post<GastoModel>(this.resourceUrl, entity);
     }
 
     valores(): Observable<ValoresModel>{
