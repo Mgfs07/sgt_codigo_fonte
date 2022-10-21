@@ -9,6 +9,7 @@ import {RadioButtonModule} from "primeng/radiobutton";
 import {ToastModule} from "primeng/toast";
 import {InputTextareaModule} from "primeng/inputtextarea";
 import {FileUploadModule} from "primeng/fileupload";
+import {InputMaskModule} from "primeng/inputmask";
 
 export const PRIMENG_IMPORTS: any = [
     ButtonModule,
@@ -21,5 +22,6 @@ export const PRIMENG_IMPORTS: any = [
     RadioButtonModule,
     ToastModule,
     InputTextareaModule,
-    FileUploadModule
+    FileUploadModule,
+    InputMaskModule
 ];

@@ -1,6 +1,6 @@
-<form [formGroup]="formPagamentoColaborador" class="ui-fluid">
-    <div class="field col-6">
-        <label>Pagante</label>
+<form [formGroup]="formPagamentoColaborador" class="form p-fluid">
+    <div class="field col-12">
+        <label>Colaborador</label>
         <p-dropdown formControlName="idColaborador" [filter]="true" [options]="colaboradorDrop"
                     placeholder="Selecione o colaborador"
                     appendTo="body">
@@ -11,40 +11,45 @@
             </ng-template>
         </p-dropdown>
     </div>
-    <div class="field col-6">
-        <label>Esta Pagando</label>
-        <p-dropdown formControlName="idPagamento" [options]="pagamentoDrop" placeholder="Selecione o pagamento"
+    <div class="field col-12">
+        <label>Tipo Pagamento</label>
+        <p-dropdown formControlName="idPagamento" [options]="pagamentoDrop" placeholder="Selecione o  tipo do pagamento"
                     appendTo="body">
         </p-dropdown>
     </div>
-    <div class="field col-6">
+    <div class="field col-12">
         <label>Observação</label>
         <input type="text" pInputText formControlName="observacao"/>
     </div>
-    <div class="field col-8">
-        <label>Retirado de Algum lugar? </label>
-        <p-checkbox (onChange)="abrirGrid(vizualizar)" name="Retirado de algum lugar?" [binary]="true"
-                    formControlName="retiradoLugar"></p-checkbox>
-        <div class="p-grid field" *ngIf="vizualizar">
-            <p-dropdown formControlName="idPagamento" [options]="pagamentoRetirado" placeholder="Selecione o pagamento"
+    <div class="area flex align-items-baseline pt-0">
+        <div class="field col-6 flex align-content-center">
+            <label class="pr-3 mb-0">Retirado de Algum lugar? </label>
+            <p-checkbox (onChange)="abrirGrid(vizualizar)" name="Retirado de algum lugar?" [binary]="true"
+                        formControlName="retiradoLugar"></p-checkbox>
+        </div>
+        <div class="field col-6" *ngIf="vizualizar">
+            <p-dropdown formControlName="idPagamento" [options]="pagamentoRetirado" placeholder="Selecione o  tipo do pagamento"
                         appendTo="body">
             </p-dropdown>
         </div>
     </div>
-    <div class="field col-6">
-        <label for="dataPagamento">Data do Pagamento </label>
-        <p-calendar
-            id="dataPagamento"
-            formControlName="dataPagamento"
-            dateFormat="dd/mm/yy"
-            appendTo="body"
-            [yearNavigator]="true"
-            [defaultDate]="dataRegistro"
-        ></p-calendar>
-    </div>
-    <div class="field col-6">
-        <label>Valor</label>
-        <p-inputNumber formControlName="valorPago" [showButtons]="true" mode="currency" currency="BRL"></p-inputNumber>
+    <div class="area flex">
+        <div class="field col-6">
+            <label for="dataPagamento">Data do Pagamento </label>
+            <p-calendar
+                placeholder="DD/MM/AAAA"
+                id="dataPagamento"
+                formControlName="dataPagamento"
+                dateFormat="dd/mm/yy"
+                appendTo="body"
+                [yearNavigator]="true"
+                [defaultDate]="dataRegistro"
+            ></p-calendar>
+        </div>
+        <div class="field col-6">
+            <label>Valor R$</label>
+            <p-inputNumber formControlName="valorPago" [showButtons]="true" mode="currency" currency="BRL"></p-inputNumber>
+        </div>
     </div>
 </form>
 <div class="flex justify-content-end" style="display: flex; justify-content: space-between;">

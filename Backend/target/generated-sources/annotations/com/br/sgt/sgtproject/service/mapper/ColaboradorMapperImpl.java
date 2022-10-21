@@ -10,20 +10,20 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-10-20T21:19:45-0300",
-    comments = "version: 1.4.2.Final, compiler: javac, environment: Java 17.0.4.1 (Amazon.com Inc.)"
+    date = "2022-10-21T08:38:10-0300",
+    comments = "version: 1.4.2.Final, compiler: javac, environment: Java 17.0.5 (Amazon.com Inc.)"
 )
 @Component
 public class ColaboradorMapperImpl implements ColaboradorMapper {
 
     @Override
-    public List<Colaborador> toEntity(List<ColaboradorDTO> arg0) {
-        if ( arg0 == null ) {
+    public List<Colaborador> toEntity(List<ColaboradorDTO> dtoList) {
+        if ( dtoList == null ) {
             return null;
         }
 
-        List<Colaborador> list = new ArrayList<Colaborador>( arg0.size() );
-        for ( ColaboradorDTO colaboradorDTO : arg0 ) {
+        List<Colaborador> list = new ArrayList<Colaborador>( dtoList.size() );
+        for ( ColaboradorDTO colaboradorDTO : dtoList ) {
             list.add( toEntity( colaboradorDTO ) );
         }
 
@@ -31,13 +31,13 @@ public class ColaboradorMapperImpl implements ColaboradorMapper {
     }
 
     @Override
-    public List<ColaboradorDTO> toDto(List<Colaborador> arg0) {
-        if ( arg0 == null ) {
+    public List<ColaboradorDTO> toDto(List<Colaborador> entityList) {
+        if ( entityList == null ) {
             return null;
         }
 
-        List<ColaboradorDTO> list = new ArrayList<ColaboradorDTO>( arg0.size() );
-        for ( Colaborador colaborador : arg0 ) {
+        List<ColaboradorDTO> list = new ArrayList<ColaboradorDTO>( entityList.size() );
+        for ( Colaborador colaborador : entityList ) {
             list.add( toDto( colaborador ) );
         }
 

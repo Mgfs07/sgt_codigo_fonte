@@ -1,20 +1,22 @@
-<form [formGroup]="formularioColaborador" class="ui-fluid">
-    <div class="field col-6">
+<form [formGroup]="formularioColaborador" class="form p-fluid">
+    <div class="field col-12">
         <label>Novo Colaborador</label>
         <input type="text" pInputText formControlName="nomeColaborador"/>
     </div>
-    <div class="field col-6">
-        <label>Esta Pagando</label>
-        <p-dropdown formControlName="idUnidade" [options]="dropdownUnidade"
-                    placeholder="Selecione a Unidade"
-                    appendTo="body">
-        </p-dropdown>
+    <div class="area flex">
+        <div class="field col-6">
+            <label>Esta Pagando</label>
+            <p-dropdown formControlName="idUnidade" [options]="dropdownUnidade"
+                        placeholder="Selecione a Unidade"
+                        appendTo="body">
+            </p-dropdown>
+        </div>
+        <div class="field col-6">
+            <label>Telefone</label>
+            <p-inputMask mask="(99) 99999-9999" formControlName="telefone" placeholder="(99) 99999-9999"></p-inputMask>
+        </div>
     </div>
-    <div class="field col-6">
-        <label>Telefone</label>
-        <input type="text" pInputText formControlName="telefone"/>
-    </div>
-    <div class="field col-6">
+    <div class="field col-12">
         <label>Email</label>
         <input type="text" pInputText formControlName="email"/>
     </div>

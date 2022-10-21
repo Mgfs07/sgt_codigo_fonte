@@ -1,31 +1,34 @@
-<div class="ui-g-8">
+<div class="form p-fluid">
     <form [formGroup]="formPagamento" class="ui-fluid ui-g-8">
-        <div class="field col-6">
+        <div class="field col-12">
             <label>Nome do Doador</label>
             <input type="text" pInputText formControlName="nomeDoador"/>
         </div>
-        <div class="field col-6">
+        <div class="field col-12">
             <label>Observacao</label>
             <input type="text" pInputText formControlName="observacao"/>
         </div>
-        <div class="field col-6">
-            <label for="dataDoacao">Data do Pagamento</label>
-            <p-calendar
-                id="dataDoacao"
-                formControlName="dataDoacao"
-                dateFormat="dd/mm/yy"
-                appendTo="body"
-                [yearNavigator]="true"
-                [defaultDate]="dataRegistro"
-            ></p-calendar>
+        <div class="area flex">
+            <div class="field col-6">
+                <label for="dataPagamento">Data do Pagamento </label>
+                <p-calendar
+                    placeholder="DD/MM/AAAA"
+                    id="dataPagamento"
+                    formControlName="dataPagamento"
+                    dateFormat="dd/mm/yy"
+                    appendTo="body"
+                    [yearNavigator]="true"
+                    [defaultDate]="dataRegistro"
+                ></p-calendar>
+            </div>
+            <div class="field col-6">
+                <label>Valor R$</label>
+                <p-inputNumber formControlName="valorPago" [showButtons]="true" mode="currency" currency="BRL"></p-inputNumber>
+            </div>
         </div>
-        <div class="field col-6">
-            <label>Valor</label>
-            <p-inputNumber formControlName="valorDoado" [showButtons]="true" mode="currency" currency="BRL"></p-inputNumber>
-        </div>
-        <div class="field col-6">
+        <div class="field col-12">
             <label>Doado para: </label>
-            <p-dropdown formControlName="doadoParaPagamento" [options]="pagamentoDrop" placeholder="Selecione o clientes"
+            <p-dropdown formControlName="doadoParaPagamento" [options]="pagamentoDrop" placeholder="Selecione o  tipo do pagamento"
                         appendTo="body">
             </p-dropdown>
         </div>

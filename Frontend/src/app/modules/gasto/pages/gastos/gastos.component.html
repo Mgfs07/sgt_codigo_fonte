@@ -1,14 +1,14 @@
-<div class="ui-g-8">
+<div class="form p-fluid">
     <form [formGroup]="formGasto" class="ui-fluid ui-g-8">
-        <div class="field col-6">
+        <div class="field col-12">
             <label>Motivo </label>
             <input type="text" pInputText formControlName="motivo"/>
         </div>
-        <div class="field col-6">
+        <div class="field col-12">
             <label>Descrição </label>
             <input type="text" pInputText formControlName="descricao"/>
         </div>
-        <div class="field col-6">
+        <div class="field col-12">
             <label>Solicitante </label>
             <p-dropdown formControlName="idColaborador" [filter]="true" [options]="colaboradorDrop" placeholder="Colaborador"
                         appendTo="body">
@@ -19,41 +19,51 @@
                 </ng-template>
             </p-dropdown>
         </div>
-        <div class="field col-6">
-            <label for="dataDispesa">Data do Pagamento</label>
-            <p-calendar
-                id="dataDispesa"
-                formControlName="dataDispesa"
-                dateFormat="dd/mm/yy"
-                appendTo="body"
-                [yearNavigator]="true"
-                [defaultDate]="dataRegistro"
-            ></p-calendar>
+        <div class="area flex">
+            <div class="field col-6">
+                <label for="dataPagamento">Data do Pagamento </label>
+                <p-calendar
+                    placeholder="DD/MM/AAAA"
+                    id="dataPagamento"
+                    formControlName="dataPagamento"
+                    dateFormat="dd/mm/yy"
+                    appendTo="body"
+                    [yearNavigator]="true"
+                    [defaultDate]="dataRegistro"
+                ></p-calendar>
+            </div>
+            <div class="field col-6">
+                <label>Valor R$</label>
+                <p-inputNumber formControlName="valorPago" [showButtons]="true" mode="currency" currency="BRL"></p-inputNumber>
+            </div>
         </div>
-        <div class="field col-6">
-            <label>Valor </label>
-            <p-inputNumber formControlName="valorRetirado" [showButtons]="true" mode="currency" currency="BRL"></p-inputNumber>
-        </div>
-        <div class="field col-6">
+        <div class="field col-12">
             <label>Retirado De </label>
-            <p-dropdown formControlName="retiradoDoPagamento" [options]="pagamentoDrop" placeholder="Selecione o Pagamento"
+            <p-dropdown formControlName="retiradoDoPagamento" [options]="pagamentoDrop" placeholder="Selecione o  tipo do pagamento"
                         appendTo="body">
             </p-dropdown>
         </div>
     </form>
-    <p-card>
-        <p>Mensalidade R$ {{valoresGastos.mensalidade}},00</p>
-        <p>Campori R$ {{valoresGastos.campori}},00</p>
-        <p>Camisa R$ {{valoresGastos.camisa}},00</p>
-        <p>Doacoes R$ {{valoresGastos.doacoes}},00</p>
-        <p>Livre R$ {{valoresGastos.livre}},00</p>
-        <p>AcampEdessa R$ {{valoresGastos.acampEdessa}},00</p>
-        <p>Caderno R$ {{valoresGastos.caderno}},00</p>
-        <p>Total R$ {{valoresGastos.total}},00</p>
+    <p-card class="card-tipo-pag col-12 pt-0">
+        <div class="area flex justify-content-around">
+            <div>
+                <p>Mensalidade R$ {{valoresGastos.mensalidade}},00</p>
+                <p>Campori R$ {{valoresGastos.campori}},00</p>
+                <p>Camisa R$ {{valoresGastos.camisa}},00</p>
+                <p>Doacoes R$ {{valoresGastos.doacoes}},00</p>
+            </div>
+            <div>
+                <p>Livre R$ {{valoresGastos.livre}},00</p>
+                <p>AcampEdessa R$ {{valoresGastos.acampEdessa}},00</p>
+                <p>Caderno R$ {{valoresGastos.caderno}},00</p>
+                <p>Total R$ {{valoresGastos.total}},00</p>
+            </div>
+        </div>
     </p-card>
 <div class="flex justify-content-end" style="display: flex; justify-content: space-between;">
     <button type="button" pButton icon="pi pi-times" label="Cancelar" (click)="fecharForm()"
             class="ui-button-secondary mr-3"></button>
     <button type="button" pButton icon="pi pi-check" label="Salvar" (click)="this.salvarFormulario()"
             class="button-save-new"></button>
+</div>
 </div>
