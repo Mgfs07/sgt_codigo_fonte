@@ -7,6 +7,8 @@ import {GastosService} from "../../../../shared/service/gastos.service";
 import {GastoModel} from "../../../../model/gasto.model";
 import {ValoresModel} from "../../../../model/valores.model";
 import {FileUpload} from "primeng/fileupload";
+import {finalize} from "rxjs";
+import {MensagensUtil} from "../../../../shared/utils/mensagens-util";
 
 @Component({
   selector: 'app-gastos',
@@ -34,7 +36,8 @@ export class GastosComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private colaboradorService: ColaboradorService,
               private pagamentosService: PagamentosService,
-              private gastoService: GastosService) { }
+              private gastoService: GastosService,
+              private messageUtil: MensagensUtil) { }
 
   ngOnInit(): void {
       this.novoFormulario();
@@ -78,13 +81,20 @@ export class GastosComponent implements OnInit {
 
     salvarFormulario(): void {
         this.novoPagamento = this.formGasto.getRawValue();
-        this.gastoService.salvar(this.novoPagamento).subscribe(
+        this.gastoService.salvar(this.novoPagamento).pipe(finalize(() => {
+            this.fecharForm();
+            this.listarPagamento = true;
+            this.buscarValores();
+        })).subscribe(
             () => {
-                this.fecharForm();
-                this.listarPagamento = true
-                this.buscarValores();
-            }, error => console.log(error))
+                if(this.novoPagamento.id){
+                    this.messageUtil.mensagemSucesso('Gasto atualizado com sucesso', 'Sucesso')
+                }else{
+                    this.messageUtil.mensagemSucesso('Gasto cadastrado com sucesso', 'Sucesso')
+                }
+            }, error => this.messageUtil.mensagemErro(error.error.message, 'Falha ao salvar o gasto.\n'))
     }
+
 
     fecharForm(): void {
         this.formGasto.reset();

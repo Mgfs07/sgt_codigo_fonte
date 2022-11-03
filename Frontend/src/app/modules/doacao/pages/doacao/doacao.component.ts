@@ -4,6 +4,8 @@ import {SelectItem} from "primeng/api";
 import {PagamentosService} from "../../../../shared/service/pagamentos.service";
 import {DoacoesService} from "../../../../shared/service/doacoes.service";
 import {DoacaoModel} from "../../../../model/doacao.model";
+import {finalize} from "rxjs";
+import {MensagensUtil} from "../../../../shared/utils/mensagens-util";
 
 @Component({
   selector: 'app-doacao',
@@ -26,7 +28,8 @@ export class DoacaoComponent implements OnInit {
 
     constructor(private fb: FormBuilder,
                 private pagamentosService: PagamentosService,
-                private doacoesService: DoacoesService) { }
+                private doacoesService: DoacoesService,
+                private messagemService: MensagensUtil) { }
 
     ngOnInit(): void {
         this.novoFormulario();
@@ -63,12 +66,21 @@ export class DoacaoComponent implements OnInit {
 
     salvarFormulario(): void {
         this.novoPagamento = this.formPagamento.getRawValue();
-        this.doacoesService.salvar(this.novoPagamento).subscribe(
+        this.doacoesService.salvar(this.novoPagamento).pipe(finalize(() => {
+            this.fecharForm();
+            this.listarPagamento = true;
+        }))
+            .subscribe(
             () => {
-                this.fecharForm();
-                this.listarPagamento = true
-            }, error => console.log(error))
+                if(this.novoPagamento.id){
+                    this.messagemService.mensagemSucesso('Doacao atualizado com sucesso', 'Sucesso');
+                }else {
+                    this.messagemService.mensagemSucesso('Doacao cadastrada com sucesso','Sucesso' );
+                }
+            }, error => this.messagemService.mensagemErro(error.error.message, "Falha ao salvar a Doacao.\n")
+            );
     }
+
 
     fecharForm(): void {
         this.formPagamento.reset();

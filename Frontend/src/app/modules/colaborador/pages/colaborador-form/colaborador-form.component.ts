@@ -61,18 +61,19 @@ export class ColaboradorFormComponent implements OnInit {
         this.novoColaborador = this.formularioColaborador.getRawValue();
         console.log(this.novoColaborador);
         this.colaboradorService.salvar(this.novoColaborador)
-            .pipe(finalize(() => this.fecharForm()))
+            .pipe(finalize(() => {
+                this.fecharForm();
+                this.listarColaborador = true;
+            }))
             .subscribe(
                 () => {
                     if (this.novoColaborador.id) {
-                        this.messageUtil.mensagemSucesso('Colaborador cadastrado com sucesso', 'Sucesso')
-                    } else {
                         this.messageUtil.mensagemSucesso('Colaborador atualizado com sucesso', 'Sucesso')
+                    } else {
+                        this.messageUtil.mensagemSucesso('Colaborador cadastrado com sucesso', 'Sucesso')
                     }
-                }, (error) => {
-                    console.log(error);
-                    // this.messageUtil.mensagemErro('Falha ao cadastrar.\n' + error.error, 'error')
-                }
+                }, (error) => this.messageUtil.mensagemErro(error.error.message, 'Falha ao salvar Colaborador.\n')
+
             );
     }
 

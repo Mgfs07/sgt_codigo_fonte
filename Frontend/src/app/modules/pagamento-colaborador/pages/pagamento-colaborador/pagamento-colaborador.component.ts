@@ -5,6 +5,8 @@ import {SelectItem} from "primeng/api";
 import {ColaboradorService} from "../../../../shared/service/colaborador.service";
 import {PagamentosService} from "../../../../shared/service/pagamentos.service";
 import {PagamentoColaboradorModel} from "../../../../model/pagamento-colaborador.model";
+import {MensagensUtil} from "../../../../shared/utils/mensagens-util";
+import {finalize} from "rxjs";
 
 @Component({
     selector: 'app-pagamento-colaborador',
@@ -33,6 +35,7 @@ export class PagamentoColaboradorComponent implements OnInit {
         private fb: FormBuilder,
         private colaboradorService: ColaboradorService,
         private pagamentosService: PagamentosService,
+        private mensagemUtil: MensagensUtil
     ) {
     }
 
@@ -81,11 +84,17 @@ export class PagamentoColaboradorComponent implements OnInit {
 
     salvarFormulario(): void {
         this.novoPagamento = this.formPagamentoColaborador.getRawValue();
-        this.pagamentoColaboradorService.salvar(this.novoPagamento).subscribe(
+        this.pagamentoColaboradorService.salvar(this.novoPagamento).pipe(finalize(() => {
+            this.fecharForm();
+            this.listarPagamento = true;
+        })).subscribe(
             () => {
-                this.fecharForm();
-                this.listarPagamento = true
-            }, error => console.log(error))
+                if(this.novoPagamento.id){
+                    this.mensagemUtil.mensagemSucesso('Sucesso ao atualizar o pagamento', 'Sucesso');
+                }else {
+                    this.mensagemUtil.mensagemSucesso('Sucesso ao cadastrar um pagamento', 'Sucesso')
+                }
+            }, error => this.mensagemUtil.mensagemErro(error.error.message, 'Falha ao salvar o pagamento.\n'))
     }
 
 

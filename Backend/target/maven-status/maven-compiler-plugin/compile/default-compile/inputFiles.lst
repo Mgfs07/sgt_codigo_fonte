@@ -1,12 +1,14 @@
 /home/basis/Área de Trabalho/PROJETOS/SGT/sgt_codigo_fonte/Backend/src/main/java/com/br/sgt/sgtproject/service/util/MensagemDoacoesUtil.java
 /home/basis/Área de Trabalho/PROJETOS/SGT/sgt_codigo_fonte/Backend/src/main/java/com/br/sgt/sgtproject/service/dto/DoacaoDTO.java
 /home/basis/Área de Trabalho/PROJETOS/SGT/sgt_codigo_fonte/Backend/src/main/java/com/br/sgt/sgtproject/domain/Pagamento.java
+/home/basis/Área de Trabalho/PROJETOS/SGT/sgt_codigo_fonte/Backend/src/main/java/com/br/sgt/sgtproject/web/rest/TwilioCOnfig.java
 /home/basis/Área de Trabalho/PROJETOS/SGT/sgt_codigo_fonte/Backend/src/main/java/com/br/sgt/sgtproject/domain/Unidade.java
 /home/basis/Área de Trabalho/PROJETOS/SGT/sgt_codigo_fonte/Backend/src/main/java/com/br/sgt/sgtproject/repository/ColaboradorRepository.java
 /home/basis/Área de Trabalho/PROJETOS/SGT/sgt_codigo_fonte/Backend/src/main/java/com/br/sgt/sgtproject/web/rest/PagamentoColaboradorResource.java
 /home/basis/Área de Trabalho/PROJETOS/SGT/sgt_codigo_fonte/Backend/src/main/java/com/br/sgt/sgtproject/service/dto/PagamentoColaboradorDTO.java
 /home/basis/Área de Trabalho/PROJETOS/SGT/sgt_codigo_fonte/Backend/src/main/java/com/br/sgt/sgtproject/service/mapper/DoacaoListMapper.java
 /home/basis/Área de Trabalho/PROJETOS/SGT/sgt_codigo_fonte/Backend/src/main/java/com/br/sgt/sgtproject/service/mapper/DoacaoMapper.java
+/home/basis/Área de Trabalho/PROJETOS/SGT/sgt_codigo_fonte/Backend/src/main/java/com/br/sgt/sgtproject/service/EnviarSMS.java
 /home/basis/Área de Trabalho/PROJETOS/SGT/sgt_codigo_fonte/Backend/src/main/java/com/br/sgt/sgtproject/service/dto/ValoresDTO.java
 /home/basis/Área de Trabalho/PROJETOS/SGT/sgt_codigo_fonte/Backend/src/main/java/com/br/sgt/sgtproject/repository/UnidadeRepository.java
 /home/basis/Área de Trabalho/PROJETOS/SGT/sgt_codigo_fonte/Backend/src/main/java/com/br/sgt/sgtproject/service/dto/DoacaoListDTO.java
@@ -30,7 +32,9 @@
 /home/basis/Área de Trabalho/PROJETOS/SGT/sgt_codigo_fonte/Backend/src/main/java/com/br/sgt/sgtproject/repository/PagamentoColaboradorRepository.java
 /home/basis/Área de Trabalho/PROJETOS/SGT/sgt_codigo_fonte/Backend/src/main/java/com/br/sgt/sgtproject/repository/PagamentoRepository.java
 /home/basis/Área de Trabalho/PROJETOS/SGT/sgt_codigo_fonte/Backend/src/main/java/com/br/sgt/sgtproject/service/util/MensagemPagamentoColaboradorUtil.java
+/home/basis/Área de Trabalho/PROJETOS/SGT/sgt_codigo_fonte/Backend/src/main/java/com/br/sgt/sgtproject/service/util/ValidadorEmail.java
 /home/basis/Área de Trabalho/PROJETOS/SGT/sgt_codigo_fonte/Backend/src/main/java/com/br/sgt/sgtproject/service/dto/GastoDTO.java
+/home/basis/Área de Trabalho/PROJETOS/SGT/sgt_codigo_fonte/Backend/src/main/java/com/br/sgt/sgtproject/web/rest/SMSResource.java
 /home/basis/Área de Trabalho/PROJETOS/SGT/sgt_codigo_fonte/Backend/src/main/java/com/br/sgt/sgtproject/service/dto/PagamentoColaboradorListDTO.java
 /home/basis/Área de Trabalho/PROJETOS/SGT/sgt_codigo_fonte/Backend/src/main/java/com/br/sgt/sgtproject/service/ColaboradorService.java
 /home/basis/Área de Trabalho/PROJETOS/SGT/sgt_codigo_fonte/Backend/src/main/java/com/br/sgt/sgtproject/repository/DoacaoRepository.java
