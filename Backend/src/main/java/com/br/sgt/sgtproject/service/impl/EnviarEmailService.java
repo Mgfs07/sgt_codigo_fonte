@@ -28,9 +28,9 @@ public class EnviarEmailService {
         log.info("Enviado");
     }
 
-    public void pagamento(PagamentoColaboradorListDTO pagamento){
+    public void pagamento(PagamentoColaboradorListDTO pagamento, String emailColaborador){
         SimpleMailMessage mensagem = new SimpleMailMessage();
-        mensagem.setTo("cruvmercenarios@gmail.com");
+        mensagem.setTo(emailColaborador);
         mensagem.setSubject("Pagamento do(e) " + pagamento.getNomePagamento());
         mensagem.setText("Olá " + pagamento.getNomeColaborador() + "\nVoce pagou o(a) " + pagamento.getNomePagamento()  +
                 "No dia " + pagamento.getDataPagamento() +

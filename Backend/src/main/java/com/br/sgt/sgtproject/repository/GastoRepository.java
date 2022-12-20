@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface GastoRepository extends JpaRepository<Gasto, Integer> {
 
@@ -21,4 +23,5 @@ public interface GastoRepository extends JpaRepository<Gasto, Integer> {
     @Query("select case when sum(g.valorRetirado) is null then 0 else sum(g.valorRetirado) end from Gasto g where g.retiradoDe.id = :idPagamento")
     Double valorGasto(@Param("idPagamento") Integer idPagamento);
 
+    List<Gasto> findAllByOrderByColaboradorId();
 }

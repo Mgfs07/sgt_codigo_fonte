@@ -26,8 +26,8 @@ export class PagamentoColaboradorComponent implements OnInit {
 
     @Input() colaboradorModel: any;
     @Output() respForm: EventEmitter<boolean> = new EventEmitter();
-    @ViewChild('valor') valor: number;
-    @ViewChild('vizualizar') vizualizar: boolean;
+    @ViewChild(Number) valor: number;
+    @ViewChild(Boolean) visualizar: boolean;
 
 
     constructor(
@@ -77,24 +77,19 @@ export class PagamentoColaboradorComponent implements OnInit {
         this.formPagamentoColaborador.reset();
     }
 
-    saveteste(): void {
-        console.log(this.novoPagamento = this.formPagamentoColaborador.getRawValue())
-
-    }
-
     salvarFormulario(): void {
         this.novoPagamento = this.formPagamentoColaborador.getRawValue();
-        this.pagamentoColaboradorService.salvar(this.novoPagamento).pipe(finalize(() => {
-            this.fecharForm();
-            this.listarPagamento = true;
-        })).subscribe(
-            () => {
-                if(this.novoPagamento.id){
-                    this.mensagemUtil.mensagemSucesso('Sucesso ao atualizar o pagamento', 'Sucesso');
-                }else {
-                    this.mensagemUtil.mensagemSucesso('Sucesso ao cadastrar um pagamento', 'Sucesso')
-                }
-            }, error => this.mensagemUtil.mensagemErro(error.error.message, 'Falha ao salvar o pagamento.\n'))
+            this.pagamentoColaboradorService.salvar(this.novoPagamento).pipe(finalize(() => {
+                this.fecharForm();
+                this.listarPagamento = true;
+            })).subscribe(
+                () => {
+                    if(this.novoPagamento.id){
+                        this.mensagemUtil.mensagemSucesso('Sucesso ao atualizar o pagamento', 'Sucesso');
+                    }else {
+                        this.mensagemUtil.mensagemSucesso('Sucesso ao cadastrar um pagamento', 'Sucesso')
+                    }
+                }, error => this.mensagemUtil.mensagemErro(error.error.message, 'Falha ao salvar o pagamento.\n'))
     }
 
 
@@ -112,8 +107,8 @@ export class PagamentoColaboradorComponent implements OnInit {
 
     abrirGrid(visualizar: boolean){
         if(visualizar){
-            return this.vizualizar = false;
+            return this.visualizar = false;
         }
-        return this.vizualizar = true;
+        return this.visualizar = true;
     }
 }

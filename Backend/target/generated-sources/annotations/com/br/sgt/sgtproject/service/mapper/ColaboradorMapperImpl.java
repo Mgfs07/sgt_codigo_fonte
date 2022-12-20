@@ -5,12 +5,12 @@ import com.br.sgt.sgtproject.domain.Unidade;
 import com.br.sgt.sgtproject.service.dto.ColaboradorDTO;
 import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.Generated;
+import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-10-27T09:59:43-0300",
+    date = "2022-11-19T17:28:22-0300",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 17.0.4.1 (Amazon.com Inc.)"
 )
 @Component
@@ -50,14 +50,21 @@ public class ColaboradorMapperImpl implements ColaboradorMapper {
             return null;
         }
 
-        ColaboradorDTO colaboradorDTO = new ColaboradorDTO();
+        Integer idUnidade = null;
+        Integer id = null;
+        String nomeColaborador = null;
+        String telefone = null;
+        String email = null;
+        Boolean ativo = null;
 
-        colaboradorDTO.setIdUnidade( colaboradorUnidadeId( colaborador ) );
-        colaboradorDTO.setId( colaborador.getId() );
-        colaboradorDTO.setNomeColaborador( colaborador.getNomeColaborador() );
-        colaboradorDTO.setTelefone( colaborador.getTelefone() );
-        colaboradorDTO.setEmail( colaborador.getEmail() );
-        colaboradorDTO.setAtivo( colaborador.getAtivo() );
+        idUnidade = colaboradorUnidadeId( colaborador );
+        id = colaborador.getId();
+        nomeColaborador = colaborador.getNomeColaborador();
+        telefone = colaborador.getTelefone();
+        email = colaborador.getEmail();
+        ativo = colaborador.getAtivo();
+
+        ColaboradorDTO colaboradorDTO = new ColaboradorDTO( id, nomeColaborador, idUnidade, telefone, email, ativo );
 
         return colaboradorDTO;
     }

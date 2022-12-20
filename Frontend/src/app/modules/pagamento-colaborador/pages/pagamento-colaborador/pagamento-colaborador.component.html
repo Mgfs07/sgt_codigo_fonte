@@ -24,10 +24,10 @@
     <div class="area flex align-items-baseline pt-0">
         <div class="field col-6 flex align-content-center">
             <label class="pr-3 mb-0">Retirado de Algum lugar? </label>
-            <p-checkbox (onChange)="abrirGrid(vizualizar)" name="Retirado de algum lugar?" [binary]="true"
+            <p-checkbox (onChange)="abrirGrid(visualizar)" [falseValue]="this.visualizar" name="Retirado de algum lugar?" [binary]="true"
                         formControlName="retiradoLugar"></p-checkbox>
         </div>
-        <div class="field col-6" *ngIf="vizualizar">
+        <div class="field col-6" *ngIf="visualizar">
             <p-dropdown formControlName="idPagamento" [options]="pagamentoRetirado" placeholder="Selecione o  tipo do pagamento"
                         appendTo="body">
             </p-dropdown>

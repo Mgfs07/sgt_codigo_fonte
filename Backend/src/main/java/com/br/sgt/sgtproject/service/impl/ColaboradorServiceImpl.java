@@ -34,10 +34,12 @@ public class ColaboradorServiceImpl implements ColaboradorService {
     }
 
     public ColaboradorDTO buscar(Integer id){
-        return mapper.toDto(buscarPorId(id));
+        Colaborador colaborador = repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+                MensagemColaboradorUtil.COLABORADOR_NAO_ENCONTRADO));
+        return mapper.toDto(colaborador);
     }
 
-    private Colaborador buscarPorId(Integer id){
+    public Colaborador buscarPorId(Integer id){
         return repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
                 MensagemColaboradorUtil.COLABORADOR_NAO_ENCONTRADO));
     }

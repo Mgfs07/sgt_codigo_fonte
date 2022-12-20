@@ -2,6 +2,7 @@ package com.br.sgt.sgtproject.service.impl;
 
 import com.br.sgt.sgtproject.domain.PagamentoColaborador;
 import com.br.sgt.sgtproject.repository.PagamentoColaboradorRepository;
+import com.br.sgt.sgtproject.service.ColaboradorService;
 import com.br.sgt.sgtproject.service.PagamentoColaboradorService;
 import com.br.sgt.sgtproject.service.dto.PagamentoColaboradorDTO;
 import com.br.sgt.sgtproject.service.dto.PagamentoColaboradorListDTO;
@@ -25,6 +26,7 @@ public class PagamentoColaboradorServiceImpl implements PagamentoColaboradorServ
     private final PagamentoColaboradorListMapper listMapper;
     private final PagamentoColaboradorMapper mapper;
     private final EnviarEmailService enviarEmailService;
+    private final ColaboradorService colaboradorService;
 
     public List<PagamentoColaboradorListDTO> buscarTodos(){
         return listMapper.toDto(repository.findAllByOrderByColaboradorId());
@@ -40,10 +42,14 @@ public class PagamentoColaboradorServiceImpl implements PagamentoColaboradorServ
     }
 
     public PagamentoColaboradorDTO salvar(PagamentoColaboradorDTO dto){
+        if(dto.getRetiradoLugar() == null){
+            dto.setRetiradoLugar(false);
+        }
         PagamentoColaborador pagamentoColaborador = mapper.toEntity(dto);
-        PagamentoColaboradorListDTO listDTO = listMapper.toDto(pagamentoColaborador);
+//        PagamentoColaboradorListDTO listDTO = listMapper.toDto(pagamentoColaborador);
         PagamentoColaboradorDTO pagamentoColaboradorDTO = mapper.toDto(repository.save(pagamentoColaborador));
-        enviarEmailService.pagamento(listDTO);
+//        ColaboradorDTO colaboradorDTO = colaboradorService.buscar(pagamentoColaboradorDTO.getIdColaborador());
+//        enviarEmailService.pagamento(listDTO, colaboradorDTO.getEmail());
         return pagamentoColaboradorDTO;
     }
 

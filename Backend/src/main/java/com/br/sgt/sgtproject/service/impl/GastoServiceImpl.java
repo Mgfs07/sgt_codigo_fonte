@@ -28,7 +28,7 @@ public class GastoServiceImpl implements GastoService {
     private final EnviarEmailService enviarEmailService;
 
     public List<GastoListDTO> buscarTodos(){
-        return listMapper.toDto(repository.findAll());
+        return listMapper.toDto(repository.findAllByOrderByColaboradorId());
     }
 
     private Gasto buscarPorId(Integer id){

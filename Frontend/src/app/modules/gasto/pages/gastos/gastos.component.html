@@ -21,11 +21,11 @@
         </div>
         <div class="area flex">
             <div class="field col-6">
-                <label for="dataPagamento">Data do Pagamento </label>
+                <label for="dataDispesa">Data do Pagamento </label>
                 <p-calendar
                     placeholder="DD/MM/AAAA"
-                    id="dataPagamento"
-                    formControlName="dataPagamento"
+                    id="dataDispesa"
+                    formControlName="dataDispesa"
                     dateFormat="dd/mm/yy"
                     appendTo="body"
                     [yearNavigator]="true"
@@ -34,7 +34,7 @@
             </div>
             <div class="field col-6">
                 <label>Valor R$</label>
-                <p-inputNumber formControlName="valorPago" [min]="0" [showButtons]="true" mode="currency" currency="BRL"></p-inputNumber>
+                <p-inputNumber formControlName="valorRetirado" [min]="0" [showButtons]="true" mode="currency" currency="BRL"></p-inputNumber>
             </div>
         </div>
         <div class="field col-12">

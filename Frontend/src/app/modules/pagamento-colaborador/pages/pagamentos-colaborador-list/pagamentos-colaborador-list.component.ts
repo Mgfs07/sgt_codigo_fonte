@@ -17,9 +17,6 @@ export class PagamentosColaboradorListComponent implements OnInit {
     @Input() display = false;
     @Output() recarregarListagem: EventEmitter<any> = new EventEmitter;
     @ViewChild(PagamentoColaboradorComponent) formPagamentoColaborador: PagamentoColaboradorComponent;
-    sortOrder: 'multiple';
-
-
 
     constructor(
       private pagamentoColaboradorService: PagamentosColaboradoresService,

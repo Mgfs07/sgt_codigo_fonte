@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {SelectItem} from "primeng/api";
 import {ColaboradorService} from "../../../../shared/service/colaborador.service";
@@ -6,9 +6,9 @@ import {PagamentosService} from "../../../../shared/service/pagamentos.service";
 import {GastosService} from "../../../../shared/service/gastos.service";
 import {GastoModel} from "../../../../model/gasto.model";
 import {ValoresModel} from "../../../../model/valores.model";
-import {FileUpload} from "primeng/fileupload";
 import {finalize} from "rxjs";
 import {MensagensUtil} from "../../../../shared/utils/mensagens-util";
+import {GastoListModel} from "../../../../model/gasto-list.model";
 
 @Component({
   selector: 'app-gastos',
@@ -26,12 +26,10 @@ export class GastosComponent implements OnInit {
     pagamentoRetirado: SelectItem[];
     dataRegistro: Date = new Date();
     file: FileReader = new FileReader();
-    formato = '';
 
 
-    @Input() gastoList: any;
+    @Input() gastoList: GastoListModel[] = [];
     @Output() respForm: EventEmitter<boolean> = new EventEmitter();
-    @ViewChild('fileUpload') fileUpload: FileUpload;
 
   constructor(private fb: FormBuilder,
               private colaboradorService: ColaboradorService,
@@ -43,6 +41,7 @@ export class GastosComponent implements OnInit {
       this.novoFormulario();
       this.buscarColaborador();
       this.buscarPagamentos();
+      this.buscarValores();
   }
 
     novoFormulario(): void {
@@ -57,6 +56,7 @@ export class GastosComponent implements OnInit {
             retiradoDoPagamento: ['', [Validators.required]],
         });
     }
+
 
     buscarPagamentos(): void {
         this.pagamentosService.buscarDropdown().subscribe(

@@ -2,11 +2,13 @@ application:
     appName: sgt
 
 spring:
+    main:
+        allow-bean-definition-overriding: true
     mail:
         host: smtp.gmail.com
         port: 587
-        username: matheus.ferreira@basis.com.br
-        password: 98301310
+        username: cruvmercenarios@gmail.com
+        password: abjxvxuugdrlvqyn
         properties:
           mail:
               smtp:

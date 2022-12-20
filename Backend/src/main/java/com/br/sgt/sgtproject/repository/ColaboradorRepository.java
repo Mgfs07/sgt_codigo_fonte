@@ -17,4 +17,11 @@ public interface ColaboradorRepository extends JpaRepository<Colaborador, Intege
     @Query("select new com.br.sgt.sgtproject.service.dto.DropdownDTO(c.nomeColaborador, c.id) " +
             "from Colaborador c")
     List<DropdownDTO> dropdownColaborador();
+
+//    @Query("select new com.br.sgt.sgtproject.service.dto.MetaDTO(p.nomePagamento, " +
+//            "case when sum(pc.valorPago) > 0 then sum(pc.valorPago) else 0 end, " +
+//            "case when (p.valorMeta - sum(pc.valorPago)) > 0 then (p.valorMeta - sum(pc.valorPago)) else 0 end) " +
+//            "from Pagamento p left join PagamentoColaborador pc on p.id = pc.pagamento.id and pc.colaborador.id = :id " +
+//            "group by p.id")
+//    List<MetaDTO> buscarGastosColaborador(@Param("id") Integer id);
 }

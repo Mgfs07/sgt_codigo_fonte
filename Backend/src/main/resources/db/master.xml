@@ -14,4 +14,10 @@
     <include file="db/changelog/202208042355_criando_tabela_gastos.xml"/>
     <include file="db/changelog/202208042356_criando_tabela_doacoes.xml"/>
     <include file="db/changelog/202208172325_alterando_o_tipo_data_table_colaborador_pagamento.xml"/>
+    <include file="db/changelog/202211161714_create_sequence_pagamento.xml"/>
+    <include file="db/changelog/202211161716_create_colun_pagamento.xml"/>
+    <include file="db/changelog/202211191715_excluindo_sequence_pagamento.xml"/>
+    <include file="db/changelog/202211191716_criando_nova_sequence_pagamento.xml"/>
+    <include file="db/changelog/202211191725_alterando_nome_coluna_valor_meta.xml"/>
+
 </databaseChangeLog>

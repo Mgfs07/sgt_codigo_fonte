@@ -24,7 +24,7 @@ export class DoacaoComponent implements OnInit {
 
     @Input() doacaoList: any;
     @Output() respForm: EventEmitter<boolean> = new EventEmitter();
-    @ViewChild('valor') valor: number;
+    // @ViewChild('valor', {static: false}) valor: number;
 
     constructor(private fb: FormBuilder,
                 private pagamentosService: PagamentosService,
@@ -57,11 +57,6 @@ export class DoacaoComponent implements OnInit {
 
     limparForm(): void {
         this.formPagamento.reset();
-    }
-
-    saveteste(): void {
-        console.log(this.novoPagamento = this.formPagamento.getRawValue())
-
     }
 
     salvarFormulario(): void {

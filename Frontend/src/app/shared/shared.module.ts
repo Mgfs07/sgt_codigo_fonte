@@ -4,6 +4,7 @@ import { ANGULAR_IMPORTS } from './imports/angular.imports';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { TabelaGenericaComponent } from './components/tabela-generica/tabela-generica.component';
 import {MensagensUtil} from "./utils/mensagens-util";
+import {ConversoesUtil} from "./utils/conversoes.util";
 
 @NgModule({
     declarations: [
@@ -24,7 +25,8 @@ import {MensagensUtil} from "./utils/mensagens-util";
         TabelaGenericaComponent,
     ],
     providers: [
-        MensagensUtil
+        MensagensUtil,
+        ConversoesUtil
     ]
 })
 export class SharedModule { }

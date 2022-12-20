@@ -13,8 +13,8 @@
                 <label for="dataPagamento">Data do Pagamento </label>
                 <p-calendar
                     placeholder="DD/MM/AAAA"
-                    id="dataPagamento"
-                    formControlName="dataPagamento"
+                    id="dataDoacao"
+                    formControlName="dataDoacao"
                     dateFormat="dd/mm/yy"
                     appendTo="body"
                     [yearNavigator]="true"
@@ -23,7 +23,7 @@
             </div>
             <div class="field col-6">
                 <label>Valor R$</label>
-                <p-inputNumber formControlName="valorPago" [min]="0" [showButtons]="true" mode="currency" currency="BRL"></p-inputNumber>
+                <p-inputNumber formControlName="valorDoado" [min]="0" [showButtons]="true" mode="currency" currency="BRL"></p-inputNumber>
             </div>
         </div>
         <div class="field col-12">
