@@ -73,10 +73,6 @@ export class PagamentoColaboradorComponent implements OnInit {
             });
     }
 
-    limparForm(): void {
-        this.formPagamentoColaborador.reset();
-    }
-
     salvarFormulario(): void {
         this.novoPagamento = this.formPagamentoColaborador.getRawValue();
             this.pagamentoColaboradorService.salvar(this.novoPagamento).pipe(finalize(() => {
@@ -105,8 +101,8 @@ export class PagamentoColaboradorComponent implements OnInit {
             });
     }
 
-    abrirGrid(visualizar: boolean){
-        if(visualizar){
+    abrirGrid(){
+        if(this.visualizar){
             return this.visualizar = false;
         }
         return this.visualizar = true;

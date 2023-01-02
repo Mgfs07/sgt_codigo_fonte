@@ -4,6 +4,7 @@ import com.br.sgt.sgtproject.domain.PagamentoColaborador;
 import com.br.sgt.sgtproject.repository.PagamentoColaboradorRepository;
 import com.br.sgt.sgtproject.service.ColaboradorService;
 import com.br.sgt.sgtproject.service.PagamentoColaboradorService;
+import com.br.sgt.sgtproject.service.dto.MetaDTO;
 import com.br.sgt.sgtproject.service.dto.PagamentoColaboradorDTO;
 import com.br.sgt.sgtproject.service.dto.PagamentoColaboradorListDTO;
 import com.br.sgt.sgtproject.service.mapper.PagamentoColaboradorListMapper;
@@ -55,6 +56,10 @@ public class PagamentoColaboradorServiceImpl implements PagamentoColaboradorServ
 
     public void deletar (Integer id){
         repository.deleteById(id);
+    }
+
+    public List<MetaDTO> metas(Integer id) {
+        return repository.buscarPagamentosColaborador(id);
     }
 
 }

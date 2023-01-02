@@ -7,6 +7,10 @@ import {MessageService, SelectItem} from "primeng/api";
 import {ColaboradoresListModel} from "../../../../model/colaboradores-list.model";
 import {finalize} from "rxjs";
 import {MensagensUtil} from "../../../../shared/utils/mensagens-util";
+import {MetaModel} from "../../../../model/meta.model";
+import {PagamentosColaboradoresService} from "../../../../shared/service/pagamentos-colaboradores.service";
+import {ConversoesUtil} from "../../../../shared/utils/conversoes.util";
+import {ColunaModel} from "../../../../model/coluna.model";
 
 @Component({
     selector: 'app-colaborador-form',
@@ -19,6 +23,8 @@ export class ColaboradorFormComponent implements OnInit {
     novoColaborador: ColaboradorModel;
     listarColaborador: boolean = false;
     dropdownUnidade: SelectItem[];
+    pagamentosColaborador: MetaModel[];
+    coluna: ColunaModel[];
 
     @Input() colaboradorList: ColaboradoresListModel[];
     @Output() respForm: EventEmitter<boolean> = new EventEmitter();
@@ -29,13 +35,24 @@ export class ColaboradorFormComponent implements OnInit {
         private fb: FormBuilder,
         private colaboradorService: ColaboradorService,
         private unidadeService: UnidadeService,
-        private messageUtil: MensagensUtil
+        private messageUtil: MensagensUtil,
+        private pagamentoColaboradorService: PagamentosColaboradoresService
     ) {
     }
 
     ngOnInit(): void {
         this.novoFormulario();
         this.buscarUnidade();
+        this.columnsTable();
+    }
+
+
+    public columnsTable() {
+        this.coluna = [
+            new ColunaModel('nomePagamento', 'Pagamento'),
+            new ColunaModel('valorPago', 'Valor Pago'),
+            new ColunaModel('quantoFalta', 'Quanto Falta')
+        ];
     }
 
 
@@ -53,13 +70,19 @@ export class ColaboradorFormComponent implements OnInit {
     public editar(idColaborador: number): void {
         this.colaboradorService.findById(idColaborador).subscribe((response) => {
             this.buscarUnidade();
+            this.buscarPagamentosColaborador(response.id);
             this.formularioColaborador.patchValue(response);
+            console.log(this.pagamentosColaborador);
         })
+    }
+
+    public buscarPagamentosColaborador(id: number): void {
+        this.pagamentoColaboradorService.buscarPagamentosDoColaborador(id).subscribe(
+            (response) => this.pagamentosColaborador = response)
     }
 
     public salvar(): void {
         this.novoColaborador = this.formularioColaborador.getRawValue();
-        console.log(this.novoColaborador);
         this.colaboradorService.salvar(this.novoColaborador)
             .pipe(finalize(() => {
                 this.fecharForm();
@@ -89,5 +112,8 @@ export class ColaboradorFormComponent implements OnInit {
         })
     }
 
+    modificarValor(valor: number): string {
+        return ConversoesUtil.numberToCurrency(valor);
+    }
 
 }

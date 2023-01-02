@@ -15,6 +15,9 @@ import {CardModule} from "primeng/card";
         GastosListComponent,
         GastosComponent
     ],
+    exports: [
+        GastosComponent
+    ],
     imports: [
         CommonModule,
         GastoRoutingModule,

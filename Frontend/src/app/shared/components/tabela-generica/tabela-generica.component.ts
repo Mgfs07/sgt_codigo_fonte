@@ -15,6 +15,7 @@ export class TabelaGenericaComponent implements OnInit {
   @Input() dados: any;
   @Input() rows: number;
   @Input() paginator: boolean;
+  @Input() titulo: string;
 
 
   @Output() public abrirModal: EventEmitter<number> = new EventEmitter<number>();
@@ -25,12 +26,26 @@ export class TabelaGenericaComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
+    isDadosComuns(coluna: string): boolean {
+      return !this.isData(coluna) && !this.isValor(coluna) && !this.isSituacao(coluna);
+    }
+
     isData(coluna: string): boolean {
         return coluna === 'dataPagamento' || coluna === 'dataDispesa' || coluna == 'dataDoacao';
     }
 
     isValor(coluna: string): boolean {
-        return coluna == 'valorPago' || coluna == 'valorRetirado' || coluna == 'valorDoado';
+        return coluna == 'valorPago' || coluna == 'valorRetirado'
+            || coluna == 'valorDoado' || coluna == 'quantoFalta' || coluna == 'valorMeta';
+    }
+
+    isSituacao(coluna: string): boolean {
+      return coluna == 'ativo';
+    }
+
+    alterarNomeSituacao(situacao: boolean): string {
+      return situacao ? 'ATIVO' : 'INATIVO';
     }
 
     modificarValor(valor: number): string {

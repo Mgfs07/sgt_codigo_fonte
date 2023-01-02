@@ -28,7 +28,7 @@ public class PagamentoServiceImpl implements PagamentoService {
     }
 
     public List<PagamentoDTO> buscarTodos() {
-        return repository.buscarTodos();
+        return repository. buscarTodos();
     }
 
     public PagamentoDTO buscar(Integer id) {

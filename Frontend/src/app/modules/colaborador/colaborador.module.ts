@@ -6,6 +6,7 @@ import {ColaboradorComponent} from './pages/colaborador-list/colaborador.compone
 import {SharedModule} from 'src/app/shared/shared.module';
 import { ColaboradorFormComponent } from './pages/colaborador-form/colaborador-form.component';
 import {DropdownModule} from "primeng/dropdown";
+import {CardModule} from "primeng/card";
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import {DropdownModule} from "primeng/dropdown";
         CommonModule,
         ColaboradorRoutingModule,
         SharedModule,
-        DropdownModule
+        DropdownModule,
+        CardModule
     ]
 })
 export class ColaboradorModule { }

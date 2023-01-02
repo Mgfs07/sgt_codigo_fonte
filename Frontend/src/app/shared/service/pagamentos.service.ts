@@ -1,12 +1,12 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {BaseEntityService} from "./base-entity-service";
-import {PagamentoListModel} from "../../model/pagamento-list.model";
+import {PagamentoModel} from "../../model/pagamento.model";
 
 @Injectable({
   providedIn: 'root'
 })
-export class PagamentosService extends BaseEntityService<PagamentoListModel, PagamentoListModel> {
+export class PagamentosService extends BaseEntityService<PagamentoModel, PagamentoModel> {
 
     constructor(protected override http: HttpClient) { super(http);}
 

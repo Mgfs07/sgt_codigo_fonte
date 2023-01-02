@@ -3,18 +3,12 @@ package com.br.sgt.sgtproject.service.dto;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.io.Serializable;
+import java.util.List;
 
 @Getter
 @Setter
-public class ValoresDTO implements Serializable {
+public class ValoresDTO {
 
-    private Double mensalidade;
-    private Double campori;
-    private Double camisa;
-    private Double acampEdessa;
-    private Double caderno;
-    private Double livre;
-    private Double doacoes;
+    private List<TipoValorDTO> nomePagamento;
     private Double total;
 }

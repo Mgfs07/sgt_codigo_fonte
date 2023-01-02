@@ -16,4 +16,5 @@ public class PagamentoDTO implements Serializable {
     private Integer id;
     private String nomePagamento;
     private Double valorMeta;
+    private Boolean ativo = true;
 }

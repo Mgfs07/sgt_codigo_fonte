@@ -21,7 +21,7 @@ import {InicioComponent} from "./pages/inicio/inicio.component";
         AppComponent,
         InicioComponent,
         TopbarComponent,
-        SidemenuComponent
+        SidemenuComponent,
     ],
     imports: [
         BrowserModule,

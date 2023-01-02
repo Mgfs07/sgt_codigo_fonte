@@ -1,6 +1,7 @@
 package com.br.sgt.sgtproject.web.rest;
 
 import com.br.sgt.sgtproject.service.PagamentoColaboradorService;
+import com.br.sgt.sgtproject.service.dto.MetaDTO;
 import com.br.sgt.sgtproject.service.dto.PagamentoColaboradorDTO;
 import com.br.sgt.sgtproject.service.dto.PagamentoColaboradorListDTO;
 import lombok.RequiredArgsConstructor;
@@ -46,5 +47,11 @@ public class PagamentoColaboradorResource {
     public ResponseEntity<Void> deletar(@Valid @PathVariable("id") Integer id ){
         service.deletar(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping("/meta/{id}")
+    public ResponseEntity<List<MetaDTO>> enviarMetas(@PathVariable("id") Integer id) {
+        List<MetaDTO> metas = service.metas(id);
+        return new ResponseEntity<>(metas, HttpStatus.OK);
     }
 }

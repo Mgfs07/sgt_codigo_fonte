@@ -1,5 +1,6 @@
 package com.br.sgt.sgtproject.service;
 
+import com.br.sgt.sgtproject.service.dto.MetaDTO;
 import com.br.sgt.sgtproject.service.dto.PagamentoColaboradorDTO;
 import com.br.sgt.sgtproject.service.dto.PagamentoColaboradorListDTO;
 
@@ -14,4 +15,6 @@ public interface PagamentoColaboradorService {
     PagamentoColaboradorDTO salvar(PagamentoColaboradorDTO dto);
 
     void deletar (Integer id);
+
+    List<MetaDTO> metas(Integer id);
 }

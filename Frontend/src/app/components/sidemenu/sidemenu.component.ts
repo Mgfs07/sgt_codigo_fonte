@@ -15,7 +15,8 @@ export class SidemenuComponent {
         new OpcaoMenuModel('pi pi-user', 'Colaborador', () => this.router.navigateByUrl('/colaborador')),
         new OpcaoMenuModel('pi pi-money-bill', 'Pagamentos', () => this.router.navigateByUrl('/pagamento')),
         new OpcaoMenuModel('pi pi-eject', 'Doacoes', () => this.router.navigateByUrl('/doacoes')),
-        new OpcaoMenuModel('pi pi-exclamation-triangle', 'Gastos', () => this.router.navigateByUrl('/gastos'))
+        new OpcaoMenuModel('pi pi-exclamation-triangle', 'Gastos', () => this.router.navigateByUrl('/gastos')),
+        new OpcaoMenuModel('pi pi-chart-bar', 'Meta', () => this.router.navigateByUrl('/pagamentos-metas'))
     ];
 
     constructor(

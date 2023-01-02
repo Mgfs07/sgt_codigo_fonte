@@ -5,10 +5,12 @@ import {ColaboradorService} from "../../../../shared/service/colaborador.service
 import {PagamentosService} from "../../../../shared/service/pagamentos.service";
 import {GastosService} from "../../../../shared/service/gastos.service";
 import {GastoModel} from "../../../../model/gasto.model";
-import {ValoresModel} from "../../../../model/valores.model";
 import {finalize} from "rxjs";
 import {MensagensUtil} from "../../../../shared/utils/mensagens-util";
 import {GastoListModel} from "../../../../model/gasto-list.model";
+import {ValoresModel} from "../../../../model/valores.model";
+import {ConversoesUtil} from "../../../../shared/utils/conversoes.util";
+import {ColunaModel} from "../../../../model/coluna.model";
 
 @Component({
   selector: 'app-gastos',
@@ -27,6 +29,7 @@ export class GastosComponent implements OnInit {
     dataRegistro: Date = new Date();
     file: FileReader = new FileReader();
 
+    colunas: ColunaModel[];
 
     @Input() gastoList: GastoListModel[] = [];
     @Output() respForm: EventEmitter<boolean> = new EventEmitter();
@@ -42,6 +45,7 @@ export class GastosComponent implements OnInit {
       this.buscarColaborador();
       this.buscarPagamentos();
       this.buscarValores();
+      this.columnsTable();
   }
 
     novoFormulario(): void {
@@ -55,6 +59,13 @@ export class GastosComponent implements OnInit {
             comprovante: [null, [Validators.required]],
             retiradoDoPagamento: ['', [Validators.required]],
         });
+    }
+
+    public columnsTable() {
+        this.colunas = [
+            new ColunaModel('nomePagamento', 'Pagamento'),
+            new ColunaModel('valorPago', 'Valor Pago'),
+        ];
     }
 
 
@@ -76,6 +87,10 @@ export class GastosComponent implements OnInit {
 
     buscarValores(): void {
       this.gastoService.valores().subscribe((data) => this.valoresGastos = data)
+    }
+
+    modificarValor(valor: number): string {
+        return ConversoesUtil.numberToCurrency(valor);
     }
 
 

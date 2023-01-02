@@ -21,6 +21,14 @@
         <input type="text" pInputText formControlName="email"/>
     </div>
 </form>
+<div class="field col-12">
+    <p>Pagamentos do Colaborador: </p>
+    <app-tabela-generica [dados]="pagamentosColaborador"
+                         [colunas]="coluna"
+                         [paginator]="true"
+                         [rows]="7"
+    ></app-tabela-generica>
+</div>
 <div class="flex justify-content-end" style="display: flex; justify-content: space-between;">
     <button type="button" pButton icon="pi pi-times" label="Cancelar" (click)="fecharForm()"
             class="ui-button-secondary mr-3"></button>

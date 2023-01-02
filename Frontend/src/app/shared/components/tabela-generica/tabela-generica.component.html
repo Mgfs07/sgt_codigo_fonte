@@ -13,7 +13,7 @@
                 <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
                 <span class="p-input-icon-left ml-auto">
                     <i class="pi pi-search"></i>
-                    <input pInputText type="text" (input)="dt1.filterGlobal(filter($event), 'contains')" placeholder="filtrar" />
+                    <input pInputText type="text" (input)="dt1.filterGlobal(filter($event), 'contains')" placeholder="Pesquisar" />
                 </span>
             </div>
         </ng-template>
@@ -30,8 +30,11 @@
         <ng-template pTemplate="body" let-rowData let-colunas="columns">
             <tr>
                 <td *ngFor="let col of colunas">
-                    <ng-container *ngIf="!isData(col.field) && !isValor(col.field)">
+                    <ng-container *ngIf="isDadosComuns(col.field)">
                         {{rowData[col.field]}}
+                    </ng-container>
+                    <ng-container *ngIf="isSituacao(col.field)">
+                        {{alterarNomeSituacao(rowData[col.field])}}
                     </ng-container>
                     <ng-container *ngIf="isData(col.field)">
                         <div class="flex icone w100">
@@ -44,7 +47,7 @@
                         </div>
                     </ng-container>
                     <ng-container *ngIf="col.field === 'acoes' ">
-                        <div class="flex justify-content-center p-0">
+                        <div class="flex justify-content-start p-0">
                             <button pButton icon="pi pi-eye"
                                     class="botao-secundario button-view sem-fundo flex align-items-center justify-content-center m-1"
                                     (click)="this.abrirModal.emit(rowData.id)" >

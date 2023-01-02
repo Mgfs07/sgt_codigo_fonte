@@ -13,11 +13,13 @@ import java.util.List;
 public interface PagamentoRepository extends JpaRepository<Pagamento, Integer> {
 
     @Query("select new com.br.sgt.sgtproject.service.dto.DropdownDTO(p.nomePagamento, p.id) " +
-            "from Pagamento p")
+            "from Pagamento p where p.ativo = true")
     List<DropdownDTO> pagamentosDropdown();
 
-    @Query("select new com.br.sgt.sgtproject.service.dto.PagamentoDTO(p.id, p.nomePagamento, p.valorMeta) from Pagamento p")
+    @Query("select new com.br.sgt.sgtproject.service.dto.PagamentoDTO(p.id, p.nomePagamento, p.valorMeta, p.ativo) " +
+            "from Pagamento p")
     List<PagamentoDTO> buscarTodos();
 
     PagamentoDTO findPagamentoById(Integer id);
+
 }

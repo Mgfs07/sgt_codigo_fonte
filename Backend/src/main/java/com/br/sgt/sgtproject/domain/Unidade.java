@@ -1,6 +1,8 @@
 package com.br.sgt.sgtproject.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Column;
@@ -12,6 +14,8 @@ import javax.persistence.Table;
 @Getter
 @Setter
 @Table(name = "unidade")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Unidade {
 
     @Id

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-11-19T17:28:22-0300",
+    date = "2022-12-29T13:38:26-0300",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 17.0.4.1 (Amazon.com Inc.)"
 )
 @Component
@@ -50,21 +50,14 @@ public class ColaboradorMapperImpl implements ColaboradorMapper {
             return null;
         }
 
-        Integer idUnidade = null;
-        Integer id = null;
-        String nomeColaborador = null;
-        String telefone = null;
-        String email = null;
-        Boolean ativo = null;
+        ColaboradorDTO colaboradorDTO = new ColaboradorDTO();
 
-        idUnidade = colaboradorUnidadeId( colaborador );
-        id = colaborador.getId();
-        nomeColaborador = colaborador.getNomeColaborador();
-        telefone = colaborador.getTelefone();
-        email = colaborador.getEmail();
-        ativo = colaborador.getAtivo();
-
-        ColaboradorDTO colaboradorDTO = new ColaboradorDTO( id, nomeColaborador, idUnidade, telefone, email, ativo );
+        colaboradorDTO.setIdUnidade( colaboradorUnidadeId( colaborador ) );
+        colaboradorDTO.setId( colaborador.getId() );
+        colaboradorDTO.setNomeColaborador( colaborador.getNomeColaborador() );
+        colaboradorDTO.setTelefone( colaborador.getTelefone() );
+        colaboradorDTO.setEmail( colaborador.getEmail() );
+        colaboradorDTO.setAtivo( colaborador.getAtivo() );
 
         return colaboradorDTO;
     }
