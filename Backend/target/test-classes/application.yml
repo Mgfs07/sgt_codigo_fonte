@@ -1,0 +1,53 @@
+application:
+    appName: sgt
+
+spring:
+    main:
+        allow-bean-definition-overriding: true
+        lazy-initialization: true
+    mail:
+        host: smtp.gmail.com
+        port: 587
+        username: cruvmercenarios@gmail.com
+        password: abjxvxuugdrlvqyn
+        properties:
+            mail:
+                smtp:
+                    auth: true
+                    starttls:
+                        enable: true
+                    connectiontimeout: 5000
+                    timeout: 5000
+                    writetimeout: 5000
+                    socketFactory:
+                        port: 465
+                        class: javax.net.ssl.SSLSocketFactory
+    application:
+        name: sgtservice
+    jpa:
+        properties:
+            hibernate:
+                connection:
+                    url: jdbc:h2:mem:test;DB_CLOSE_DELAY=-1
+            username: sgt
+            password: 123
+            driver-class-name: org.h2.Driver
+        database-platform: org.hibernate.dialect.H2Dialect
+        defer-datasource-initialization: true
+    h2:
+        console:
+            enabled: true
+            path: /h2
+    jackson:
+        deserialization:
+            fail-on-unknown-properties: false
+    liquibase:
+        enabled: false
+    profiles:
+        active: test
+#        drop-first: true
+server:
+    port: 10344
+    address: localhost
+    error:
+        include-message: always

@@ -17,9 +17,6 @@ public interface PagamentoRepository extends JpaRepository<Pagamento, Integer> {
     List<DropdownDTO> pagamentosDropdown();
 
     @Query("select new com.br.sgt.sgtproject.service.dto.PagamentoDTO(p.id, p.nomePagamento, p.valorMeta, p.ativo) " +
-            "from Pagamento p")
+            "from Pagamento p order by p.ativo DESC")
     List<PagamentoDTO> buscarTodos();
-
-    PagamentoDTO findPagamentoById(Integer id);
-
 }

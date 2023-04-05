@@ -12,7 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity
 @Getter
@@ -44,7 +44,7 @@ public class PagamentoColaborador {
     private Pagamento pagamentoRetirado;
 
     @Column(name = "data_pagamento", nullable = false)
-    private LocalDateTime dataPagamento;
+    private LocalDate dataPagamento;
 
     @Column(name = "valor_pago", nullable = false)
     private Double valorPago;

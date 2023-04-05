@@ -1,0 +1,18 @@
+<div class="col-12 flex justify-content-start">
+    <button pButton type="button" icon="pi pi-plus" class="ui-button-success button-save-new" iconPos="left"
+            label="Novo" (click)="novoColaborador()"></button>
+</div>
+
+<app-tabela-generica [dados]="colaboradores"
+                     [colunas]="coluna"
+                     [rows]="5"
+                     [paginator]="true"
+                     (abrirModal)="carregar($event)"
+                     (deletar)="confirmarExclusao($event)"
+></app-tabela-generica>
+
+<p-dialog [(visible)]="display" [header]="verificarTitulo()" [modal]="true" [contentStyle]="{'max-height':'100%'}" (onHide)="resetarForm()">
+    <app-colaborador-form [colaboradorList]="colaboradores"
+                (respForm)="fecharModal()">
+    </app-colaborador-form>
+</p-dialog>

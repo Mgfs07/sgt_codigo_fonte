@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ColaboradorComponent } from './pages/colaborador-list/colaborador.component';
+import { ColaboradorListComponent } from './pages/colaborador-list/colaborador-list.component';
 
 const routes: Routes = [
-    { path: '', component: ColaboradorComponent }
+    { path: '', component: ColaboradorListComponent }
 ];
 
 @NgModule({

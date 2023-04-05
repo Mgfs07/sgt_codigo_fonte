@@ -53,6 +53,3 @@ server:
     error:
         include-message: always
 
-
-TWILIO_ACCOUNT_SID: "AC078366af0e78d8c68ac2bcdc26d4cefa"
-TWILIO_AUTH_TOKEN:  "ba8df80f77a1094bf9fd68352584ca94"

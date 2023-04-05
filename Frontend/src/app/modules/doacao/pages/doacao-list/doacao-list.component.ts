@@ -3,6 +3,12 @@ import {ColunaModel} from "../../../../model/coluna.model";
 import {DoacaoListModel} from "../../../../model/doacao-list.model";
 import {DoacoesService} from "../../../../shared/service/doacoes.service";
 import {DoacaoComponent} from "../doacao/doacao.component";
+import {EntityEnum} from "../../../../shared/utils/entity-enum";
+import {MensagensUtil} from "../../../../shared/utils/mensagens-util";
+import {ConfirmationService} from "primeng/api";
+import {Mensagens} from "../../../../shared/utils/mensagens";
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
+import {finalize} from "rxjs";
 
 @Component({
     selector: 'app-doacao-list',
@@ -13,14 +19,17 @@ export class DoacaoListComponent implements OnInit {
 
     doacoes: DoacaoListModel[] = [];
     coluna: ColunaModel[] = [];
+    novo: boolean;
 
-
+    @BlockUI() blockUI : NgBlockUI;
     @Input() display = false;
     @Output() recarregarListagem: EventEmitter<any> = new EventEmitter;
     @ViewChild(DoacaoComponent) formDoacao: DoacaoComponent;
 
     constructor(
         private doacoesService: DoacoesService,
+        private mensagemUtil: MensagensUtil,
+        private confirmationService: ConfirmationService
     ) {
     }
 
@@ -48,28 +57,35 @@ export class DoacaoListComponent implements OnInit {
         );
     }
 
-    isData(coluna: string): boolean {
-        return coluna === 'dataDoacao';
-    }
-
-    isValor(coluna: string): boolean {
-        return coluna == 'valorDoado';
-    }
-
-    editar(id: number): void {
-        this.formDoacao.editarPagamento(id);
-        this.display = true;
+    verificarTitulo(): string {
+        return this.mensagemUtil.tituloModal(this.novo, EntityEnum.DOACAO);
     }
 
     novoPagamento(): void {
-        this.formDoacao.formPagamento.reset();
+        this.formDoacao.formularioPagamento.reset();
         this.display = true;
+        this.novo = true;
     }
 
-    deletar(id: number) : void {
-        this.doacoesService.deletar(id).subscribe(() => {
-            this.obterGastos();
-        }, error => {})
+    confirmarExclusao(id: number): void {
+        this.confirmationService.confirm({
+            header: 'Excluir Doação',
+            message: 'Deseja excluir esse registro? ',
+            acceptLabel: 'Sim',
+            rejectLabel: 'Cancelar',
+            accept: () => this.deletar(id)
+        })
+    }
+
+    public deletar(id: number): void {
+        this.blockUI.start(Mensagens.CARREGANDO_DADOS);
+        this.doacoesService.deletar(id)
+            .pipe(finalize(() => {
+                this.blockUI.stop();
+                this.obterGastos();
+            }))
+            .subscribe(() => {this.mensagemUtil.mensagemSucesso(id, "", true);},
+                    error => this.mensagemUtil.mensagemErro(error.error.message, 'Falha ao Excluir Doacao.\n') )
     }
 
     public fecharModal(): void {
@@ -86,8 +102,9 @@ export class DoacaoListComponent implements OnInit {
 
     carregar(idDoacao: number): void {
         this.display = true;
+        this.novo = false;
         this.formDoacao.editarPagamento(idDoacao);
-        this.formDoacao.formPagamento.enable();
+        this.formDoacao.formularioPagamento.enable();
     }
 
 }

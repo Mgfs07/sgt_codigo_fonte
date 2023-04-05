@@ -1,6 +1,6 @@
 <div class="col-12 flex justify-content-start">
-    <button pButton type="button" icon="ui-icon-plus" class="ui-button-success button-save-new" iconPos="left"
-            label="Novo Gasto" (click)="novoPagamento()"></button>
+    <button pButton type="button" icon="pi pi-plus" class="ui-button-success button-save-new" iconPos="left"
+            label="Novo" (click)="novoPagamento()"></button>
 </div>
 
 <app-tabela-generica [dados]="gastoList"
@@ -8,10 +8,11 @@
                      [rows]="5"
                      [paginator]="true"
                      (abrirModal)="carregar($event)"
-                     (deletar)="deletar($event)"
+                     (deletar)="confirmarExclusao($event)"
+                     [entidade]="entidade"
 ></app-tabela-generica>
 
-<p-dialog [(visible)]="display" [modal]="true" [contentStyle]="{'max-height':'100%'}" (onHide)="resetarForm()">
+<p-dialog [(visible)]="display" [header]="verificarTitulo()" [modal]="true" [contentStyle]="{'max-height':'100%'}" (onHide)="resetarForm()">
     <app-gastos [gastoList]="gastoList"
                 (respForm)="fecharModal()"></app-gastos>
 </p-dialog>

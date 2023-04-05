@@ -2,53 +2,34 @@ package com.br.sgt.sgtproject.builder;
 
 
 import com.br.sgt.sgtproject.domain.Colaborador;
-import com.br.sgt.sgtproject.service.dto.ColaboradorListDTO;
+import com.br.sgt.sgtproject.domain.Unidade;
+import com.br.sgt.sgtproject.repository.ColaboradorRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-public class ColaboradorBuilder {
+@Component
+public class ColaboradorBuilder extends ConstruirEntidade<Colaborador> {
 
-    private ColaboradorBuilder(){
 
-    }
+    @Autowired
+    private ColaboradorRepository repository;
+    @Autowired
+    private UnidadeBuilder unidadeBuilder;
 
-    private Colaborador colaborador;
-    private ColaboradorListDTO colaboradorList;
-
-    public static ColaboradorBuilder umColaborador() {
-        ColaboradorBuilder builder = new ColaboradorBuilder();
-        builder.colaborador = new Colaborador();
-        return builder;
-    }
-
-    public static ColaboradorBuilder umColaboradorList() {
-        ColaboradorBuilder builder = new ColaboradorBuilder();
-        builder.colaboradorList = new ColaboradorListDTO();
-        return builder;
-    }
-
-    public ColaboradorBuilder todosAtributos() {
-        colaborador.setId(1);
+    @Override
+    public Colaborador construirEntidade() {
+        Colaborador colaborador = new Colaborador();
+        Unidade unidade = unidadeBuilder.contruir();
         colaborador.setNomeColaborador("Matheus");
-        colaborador.setUnidade(UnidadeBuilder.umaUnidade().todosAtributos().builder());
+        colaborador.setUnidade(unidade);
         colaborador.setEmail("teste@gmail.com");
         colaborador.setAtivo(true);
         colaborador.setTelefone("99999988");
-        return this;
+        return colaborador;
     }
 
-    public ColaboradorBuilder todosAtributosList() {
-        colaboradorList.setId(1);
-        colaboradorList.setNomeColaborador("Matheus");
-        colaboradorList.setNomeUnidade("Diretoria");
-        colaboradorList.setTelefone("99999988");
-        return this;
+    @Override
+    public Colaborador persistir(Colaborador entity) {
+        return repository.save(entity);
     }
-
-    public Colaborador builder() {
-        return this.colaborador;
-    }
-
-    public ColaboradorListDTO builderList() {
-        return this.colaboradorList;
-    }
-
 }

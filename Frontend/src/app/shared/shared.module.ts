@@ -5,6 +5,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { TabelaGenericaComponent } from './components/tabela-generica/tabela-generica.component';
 import {MensagensUtil} from "./utils/mensagens-util";
 import {ConversoesUtil} from "./utils/conversoes.util";
+import {ConfirmDialogModule} from "primeng/confirmdialog";
 
 @NgModule({
     declarations: [
@@ -16,6 +17,7 @@ import {ConversoesUtil} from "./utils/conversoes.util";
         ANGULAR_IMPORTS,
         FormsModule,
         ReactiveFormsModule,
+        ConfirmDialogModule,
     ],
     exports: [
         PRIMENG_IMPORTS,

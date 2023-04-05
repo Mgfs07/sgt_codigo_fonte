@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {SelectItem} from "primeng/api";
 import {PagamentosService} from "../../../../shared/service/pagamentos.service";
@@ -6,6 +6,9 @@ import {DoacoesService} from "../../../../shared/service/doacoes.service";
 import {DoacaoModel} from "../../../../model/doacao.model";
 import {finalize} from "rxjs";
 import {MensagensUtil} from "../../../../shared/utils/mensagens-util";
+import {EntityEnum} from "../../../../shared/utils/entity-enum";
+import {BlockUI, NgBlockUI} from "ng-block-ui";
+import {Mensagens} from "../../../../shared/utils/mensagens";
 
 @Component({
   selector: 'app-doacao',
@@ -14,22 +17,21 @@ import {MensagensUtil} from "../../../../shared/utils/mensagens-util";
 })
 export class DoacaoComponent implements OnInit {
 
-    formPagamento: FormGroup;
-    novoPagamento: DoacaoModel;
+    formularioPagamento: FormGroup;
+    doacao: DoacaoModel;
     listarPagamento: boolean = false;
-    pagamentoDrop: SelectItem[];
+    pagamentoDropdown: SelectItem[];
     pagamentoRetirado: SelectItem[];
     dataRegistro: Date = new Date()
 
-
+    @BlockUI() blockUI : NgBlockUI;
     @Input() doacaoList: any;
     @Output() respForm: EventEmitter<boolean> = new EventEmitter();
-    // @ViewChild('valor', {static: false}) valor: number;
 
     constructor(private fb: FormBuilder,
                 private pagamentosService: PagamentosService,
                 private doacoesService: DoacoesService,
-                private messagemService: MensagensUtil) { }
+                private mensagemUtil: MensagensUtil) { }
 
     ngOnInit(): void {
         this.novoFormulario();
@@ -37,7 +39,7 @@ export class DoacaoComponent implements OnInit {
     }
 
     novoFormulario(): void {
-        this.formPagamento = this.fb.group({
+        this.formularioPagamento = this.fb.group({
             id: [null],
             nomeDoador: ['', [Validators.required]],
             observacao: ['', [Validators.required]],
@@ -48,45 +50,44 @@ export class DoacaoComponent implements OnInit {
     }
 
     buscarPagamentos(): void {
-        this.pagamentosService.buscarDropdown().subscribe(
+        this.blockUI.start(Mensagens.CARREGANDO_DADOS);
+        this.pagamentosService.buscarDropdown().pipe(finalize(() => {
+            this.blockUI.stop();
+        })).subscribe(
             (data) => {
-                this.pagamentoDrop = data;
+                this.pagamentoDropdown = data;
                 this.pagamentoRetirado = data;
             });
     }
 
-    limparForm(): void {
-        this.formPagamento.reset();
-    }
-
     salvarFormulario(): void {
-        this.novoPagamento = this.formPagamento.getRawValue();
-        this.doacoesService.salvar(this.novoPagamento).pipe(finalize(() => {
+        this.blockUI.start(Mensagens.CARREGANDO_DADOS);
+        this.doacao = this.formularioPagamento.getRawValue();
+        this.doacoesService.salvar(this.doacao).pipe(finalize(() => {
+            this.blockUI.stop();
             this.fecharForm();
             this.listarPagamento = true;
         }))
             .subscribe(
             () => {
-                if(this.novoPagamento.id){
-                    this.messagemService.mensagemSucesso('Doacao atualizado com sucesso', 'Sucesso');
-                }else {
-                    this.messagemService.mensagemSucesso('Doacao cadastrada com sucesso','Sucesso' );
-                }
-            }, error => this.messagemService.mensagemErro(error.error.message, "Falha ao salvar a Doacao.\n")
+                this.mensagemUtil.mensagemSucesso(this.doacao.id, "", false, EntityEnum.DOACAO)
+            }, error => this.mensagemUtil.mensagemErro(error.error.message, "Falha ao salvar a Doacao.\n")
             );
     }
 
 
     fecharForm(): void {
-        this.formPagamento.reset();
+        this.formularioPagamento.reset();
         this.respForm.emit();
     }
 
     editarPagamento(id: number): void {
-        this.doacoesService.findById(id)
-            .subscribe(response => {
+        this.blockUI.start(Mensagens.CARREGANDO_DADOS);
+        this.doacoesService.findById(id).pipe(finalize(() => {
+            this.blockUI.stop();
+        })).subscribe(response => {
                 response.dataDoacao = new Date(response.dataDoacao + 'T00:00');
-                this.formPagamento.patchValue(response);
+                this.formularioPagamento.patchValue(response);
             });
     }
 

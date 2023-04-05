@@ -1,59 +1,39 @@
 package com.br.sgt.sgtproject.builder;
 
 import com.br.sgt.sgtproject.domain.Gasto;
-import com.br.sgt.sgtproject.service.dto.GastoListDTO;
+import com.br.sgt.sgtproject.repository.GastoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 
-public class GastoBuilder {
+@Component
+public class GastoBuilder extends ConstruirEntidade<Gasto> {
 
+    @Autowired
+    private GastoRepository repository;
 
-    private GastoBuilder() {
+    @Autowired
+    private ColaboradorBuilder colaboradorBuilder;
 
-    }
+    @Autowired
+    private PagamentoBuilder pagamentoBuilder;
 
-    private Gasto gasto;
-    private GastoListDTO gastoList;
-
-    public GastoBuilder umGasto(){
-        GastoBuilder builder = new GastoBuilder();
-        builder.gasto = new Gasto();
-        return builder;
-    }
-
-    public GastoBuilder umGastoList(){
-        GastoBuilder builder = new GastoBuilder();
-        builder.gastoList = new GastoListDTO();
-        return builder;
-    }
-
-    public GastoBuilder todosAtributos(){
-        gasto.setId(1);
+    public Gasto construirEntidade(){
+        Gasto gasto = new Gasto();
         gasto.setMotivo("Compra Barraca");
         gasto.setDescricao("Descricao");
-        gasto.setColaborador(ColaboradorBuilder.umColaborador().todosAtributos().builder());
+        gasto.setColaborador(colaboradorBuilder.contruir());
         gasto.setDataDispesa(LocalDate.of(2022,11,20));
         gasto.setValorRetirado(15.00);
         gasto.setComprovante("foto");
-        gasto.setRetiradoDe(PagamentoBuilder.umPagamento().todosAtributos().builder());
-        return this;
+        gasto.setRetiradoDe(pagamentoBuilder.contruir());
+        return gasto;
     }
 
-    public GastoBuilder todosAtributosList(){
-        gastoList.setId(1);
-        gastoList.setMotivo("Compra");
-        gastoList.setNomeColaborador("Matheus");
-        gastoList.setDataDispesa(LocalDate.of(2022,11,20));
-        gastoList.setValorRetirado(30.00);
-        gastoList.setRetiradoDoPagamento("Campori");
-        return this;
-    }
 
-    public Gasto builder(){
-        return this.gasto;
-    }
-
-    public GastoListDTO builderList(){
-        return this.gastoList;
+    @Override
+    public Gasto persistir(Gasto entity) {
+        return repository.save(entity);
     }
 }

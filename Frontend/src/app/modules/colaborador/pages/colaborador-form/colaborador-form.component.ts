@@ -9,8 +9,10 @@ import {finalize} from "rxjs";
 import {MensagensUtil} from "../../../../shared/utils/mensagens-util";
 import {MetaModel} from "../../../../model/meta.model";
 import {PagamentosColaboradoresService} from "../../../../shared/service/pagamentos-colaboradores.service";
-import {ConversoesUtil} from "../../../../shared/utils/conversoes.util";
 import {ColunaModel} from "../../../../model/coluna.model";
+import {EntityEnum} from "../../../../shared/utils/entity-enum";
+import {Mensagens} from "../../../../shared/utils/mensagens";
+import {BlockUI, NgBlockUI} from "ng-block-ui";
 
 @Component({
     selector: 'app-colaborador-form',
@@ -20,12 +22,14 @@ import {ColunaModel} from "../../../../model/coluna.model";
 export class ColaboradorFormComponent implements OnInit {
 
     formularioColaborador: FormGroup;
-    novoColaborador: ColaboradorModel;
+    colaborador: ColaboradorModel;
     listarColaborador: boolean = false;
     dropdownUnidade: SelectItem[];
     pagamentosColaborador: MetaModel[];
     coluna: ColunaModel[];
+    mostrarGastosColaborador: boolean = false;
 
+    @BlockUI() blockUI : NgBlockUI;
     @Input() colaboradorList: ColaboradoresListModel[];
     @Output() respForm: EventEmitter<boolean> = new EventEmitter();
 
@@ -35,7 +39,7 @@ export class ColaboradorFormComponent implements OnInit {
         private fb: FormBuilder,
         private colaboradorService: ColaboradorService,
         private unidadeService: UnidadeService,
-        private messageUtil: MensagensUtil,
+        private mensagemUtil: MensagensUtil,
         private pagamentoColaboradorService: PagamentosColaboradoresService
     ) {
     }
@@ -68,11 +72,13 @@ export class ColaboradorFormComponent implements OnInit {
 
 
     public editar(idColaborador: number): void {
-        this.colaboradorService.findById(idColaborador).subscribe((response) => {
+        this.blockUI.start(Mensagens.CARREGANDO_DADOS);
+        this.mostrarGastosColaborador = true;
+        this.colaboradorService.findById(idColaborador).pipe(finalize(() => {
             this.buscarUnidade();
+        })).subscribe((response) => {
             this.buscarPagamentosColaborador(response.id);
             this.formularioColaborador.patchValue(response);
-            console.log(this.pagamentosColaborador);
         })
     }
 
@@ -82,38 +88,33 @@ export class ColaboradorFormComponent implements OnInit {
     }
 
     public salvar(): void {
-        this.novoColaborador = this.formularioColaborador.getRawValue();
-        this.colaboradorService.salvar(this.novoColaborador)
+        this.blockUI.start(Mensagens.CARREGANDO_DADOS);
+        this.colaborador = this.formularioColaborador.getRawValue();
+        this.colaboradorService.salvar(this.colaborador)
             .pipe(finalize(() => {
+                this.blockUI.stop();
                 this.fecharForm();
                 this.listarColaborador = true;
             }))
             .subscribe(
                 () => {
-                    if (this.novoColaborador.id) {
-                        this.messageUtil.mensagemSucesso('Colaborador atualizado com sucesso', 'Sucesso')
-                    } else {
-                        this.messageUtil.mensagemSucesso('Colaborador cadastrado com sucesso', 'Sucesso')
-                    }
-                }, (error) => this.messageUtil.mensagemErro(error.error.message, 'Falha ao salvar Colaborador.\n')
-
+                    this.mensagemUtil.mensagemSucesso(this.colaborador.id, "", false, EntityEnum.COLABORADOR)
+                }, (error) => this.mensagemUtil.mensagemErro(error.error.message, 'Falha ao salvar Colaborador.\n')
             );
     }
 
 
     fecharForm(): void {
+        this.mostrarGastosColaborador = false;
         this.formularioColaborador.reset();
         this.respForm.emit();
     }
 
     buscarUnidade(): void {
-        this.unidadeService.buscarDropdown().subscribe((response) => {
+        this.unidadeService.buscarDropdown().pipe(finalize(() => {
+            this.blockUI.stop();
+        })).subscribe((response) => {
             this.dropdownUnidade = response;
         })
     }
-
-    modificarValor(valor: number): string {
-        return ConversoesUtil.numberToCurrency(valor);
-    }
-
 }

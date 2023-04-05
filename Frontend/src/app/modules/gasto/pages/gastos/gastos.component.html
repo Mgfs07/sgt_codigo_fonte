@@ -48,6 +48,15 @@
         </div>
     </form>
     <div class="field col-12">
+        <p-fileUpload name="myfoçe[]" #fileUpload
+                      accept="image/*" [auto]="true" (onClear)="mostrarBotao()" (onRemove)="limparFoto()"
+                      (onSelect)="uploadFile($event)" [customUpload]="true" chooseLabel="Foto do Comprovante">
+        </p-fileUpload>
+        <p-button [disabled]="!mostrarBotao()"
+                  (onClick)="downloadImagem()"
+                  label="Baixar comprovante" icon="pi pi-download"></p-button>
+    </div>
+    <div class="field col-12">
         <p>Total: {{modificarValor(valoresGastos.total)}}</p>
         <app-tabela-generica [dados]="valoresGastos.nomePagamento"
                              [colunas]="colunas"

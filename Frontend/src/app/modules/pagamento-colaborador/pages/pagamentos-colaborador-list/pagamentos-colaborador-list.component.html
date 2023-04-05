@@ -1,16 +1,16 @@
 <div class="col-12 flex justify-content-start">
     <button pButton type="button" icon="ui-icon-plus" class="ui-button-success button-save-new" iconPos="left"
-            label="Novo Pagamento" (click)="novoPagamento()"></button>
+            label="Novo" (click)="novoPagamento()"></button>
 </div>
 <app-tabela-generica [dados]="pagamentoColaborador"
                      [colunas]="colunas"
                      [rows]="5"
                      [paginator]="true"
                      (abrirModal)="carregar($event)"
-                     (deletar)="deletar($event)"
+                     (deletar)="confirmarExclusao($event)"
 ></app-tabela-generica>
 
-<p-dialog [(visible)]="display" [modal]="true" [contentStyle]="{'max-height':'100%'}" (onHide)="resetarForm()">
+<p-dialog [(visible)]="display" [header]="verificarTitulo()" [modal]="true" [contentStyle]="{'max-height':'100%'}" (onHide)="resetarForm()">
     <app-pagamento-colaborador [colaboradorModel]="pagamentoColaborador"
                                (respForm)="fecharModal()">
     </app-pagamento-colaborador>

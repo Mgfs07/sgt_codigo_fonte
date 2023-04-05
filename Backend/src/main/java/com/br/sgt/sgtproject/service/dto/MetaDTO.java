@@ -1,8 +1,17 @@
 package com.br.sgt.sgtproject.service.dto;
 
-public interface MetaDTO {
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
-    String getNomePagamento();
-    Integer getValorPago();
-    Integer getQuantoFalta();
+import java.io.Serializable;
+
+@Getter
+@Setter
+@AllArgsConstructor
+public class MetaDTO implements Serializable {
+
+    private String nomePagamento;
+    private Double valorPago;
+    private Double quantoFalta;
 }

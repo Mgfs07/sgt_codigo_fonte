@@ -36,6 +36,14 @@ public class PagamentoResource {
         return new ResponseEntity<>(listagem, HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<PagamentoDTO> buscarPorId(@PathVariable("id") Integer id) {
+        PagamentoDTO listagem = service.buscar(id);
+        return new ResponseEntity<>(listagem, HttpStatus.OK);
+    }
+
+
+
     @PostMapping
     public ResponseEntity<PagamentoDTO> salvar(@Valid @RequestBody PagamentoDTO dto){
         PagamentoDTO pagamentoDTO = service.salvar(dto);

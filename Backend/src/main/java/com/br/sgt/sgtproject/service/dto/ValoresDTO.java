@@ -9,6 +9,6 @@ import java.util.List;
 @Setter
 public class ValoresDTO {
 
-    private List<TipoValorDTO> nomePagamento;
+    private List<TipoPagamentoDTO> nomePagamento;
     private Double total;
 }

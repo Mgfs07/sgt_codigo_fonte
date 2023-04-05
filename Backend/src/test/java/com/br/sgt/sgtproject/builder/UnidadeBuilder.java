@@ -1,29 +1,27 @@
 package com.br.sgt.sgtproject.builder;
 
 import com.br.sgt.sgtproject.domain.Unidade;
+import com.br.sgt.sgtproject.repository.UnidadeRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-public class UnidadeBuilder {
+@Component
+public class UnidadeBuilder extends ConstruirEntidade<Unidade> {
 
-    private UnidadeBuilder(){
+    @Autowired
+    private UnidadeRepository repository;
 
-    }
 
-
-    private Unidade unidade;
-
-    public static UnidadeBuilder umaUnidade(){
-        UnidadeBuilder builder = new UnidadeBuilder();
-        builder.unidade = new Unidade();
-        return builder;
-    }
-
-    public UnidadeBuilder todosAtributos(){
-        unidade.setId(1);
+    @Override
+    public Unidade construirEntidade() {
+        Unidade unidade = new Unidade();
+        unidade.setId(10);
         unidade.setNomeUnidade("Diretoria");
-        return this;
+        return unidade;
     }
 
-    public Unidade builder(){
-        return this.unidade;
+    @Override
+    public Unidade persistir(Unidade entity) {
+        return repository.save(entity);
     }
 }

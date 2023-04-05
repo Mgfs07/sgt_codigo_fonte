@@ -1,0 +1,11 @@
+version: '3.1'
+services:
+  sgt-mongo:
+    image: mongo
+    container_name: sgt-mongo
+    restart: always
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=sgt
+      - MONGO_INITDB_ROOT_PASSWORD=sgt
+    ports:
+      - 27017:27017

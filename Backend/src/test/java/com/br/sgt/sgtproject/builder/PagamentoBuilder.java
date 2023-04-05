@@ -1,29 +1,26 @@
 package com.br.sgt.sgtproject.builder;
 
 import com.br.sgt.sgtproject.domain.Pagamento;
+import com.br.sgt.sgtproject.repository.PagamentoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-public class PagamentoBuilder {
+@Component
+public class PagamentoBuilder extends ConstruirEntidade<Pagamento> {
 
-    private PagamentoBuilder(){
-    }
+    @Autowired
+    private PagamentoRepository repository;
 
-    private Pagamento pagamento;
-
-    public static PagamentoBuilder umPagamento(){
-        PagamentoBuilder builder = new PagamentoBuilder();
-        builder.pagamento = new Pagamento();
-        return builder;
-    }
-
-    public PagamentoBuilder todosAtributos(){
-        pagamento.setId(1);
-        pagamento.setNomePagamento("Acampamento");
+    public Pagamento construirEntidade(){
+        Pagamento pagamento = new Pagamento();
+        pagamento.setNomePagamento("TESTE");
         pagamento.setValorMeta(50.00);
         pagamento.setAtivo(true);
-        return this;
+        return pagamento;
     }
 
-    public Pagamento builder() {
-        return this.pagamento;
+    @Override
+    public Pagamento persistir(Pagamento entity) {
+        return repository.save(entity);
     }
 }

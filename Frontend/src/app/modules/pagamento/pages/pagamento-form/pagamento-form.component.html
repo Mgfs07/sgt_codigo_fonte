@@ -1,0 +1,19 @@
+<div class="form p-fluid">
+    <form [formGroup]="formPagamento" class="ui-fluid ui-g-8">
+        <div class="field col-12">
+            <label>Motivo </label>
+            <input type="text" pInputText formControlName="nomePagamento"/>
+        </div>
+        <div class="field col-6">
+            <label>Valor R$</label>
+            <p-inputNumber formControlName="valorMeta" [min]="0" [showButtons]="true" mode="currency"
+                           currency="BRL"></p-inputNumber>
+        </div>
+    </form>
+    <div class="flex justify-content-end" style="display: flex; justify-content: space-between;">
+        <button type="button" pButton icon="pi pi-times" label="Cancelar" (click)="fecharForm()"
+                class="ui-button-secondary mr-3"></button>
+        <button type="button" pButton icon="pi pi-check" label="Salvar" (click)="this.salvarFormulario()"
+                class="button-save-new"></button>
+    </div>
+</div>

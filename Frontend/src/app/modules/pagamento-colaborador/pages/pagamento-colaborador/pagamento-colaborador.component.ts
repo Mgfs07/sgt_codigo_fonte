@@ -7,6 +7,8 @@ import {PagamentosService} from "../../../../shared/service/pagamentos.service";
 import {PagamentoColaboradorModel} from "../../../../model/pagamento-colaborador.model";
 import {MensagensUtil} from "../../../../shared/utils/mensagens-util";
 import {finalize} from "rxjs";
+import {EntityEnum} from "../../../../shared/utils/entity-enum";
+import {BlockUI, NgBlockUI} from "ng-block-ui";
 
 @Component({
     selector: 'app-pagamento-colaborador',
@@ -16,14 +18,14 @@ import {finalize} from "rxjs";
 export class PagamentoColaboradorComponent implements OnInit {
 
     formPagamentoColaborador: FormGroup;
-    novoPagamento: PagamentoColaboradorModel;
+    pagamentoColaborador: PagamentoColaboradorModel;
     listarPagamento: boolean = false;
     colaboradorDrop: SelectItem[];
     pagamentoDrop: SelectItem[];
     pagamentoRetirado: SelectItem[];
     dataRegistro: Date = new Date();
 
-
+    @BlockUI() blockUI : NgBlockUI;
     @Input() colaboradorModel: any;
     @Output() respForm: EventEmitter<boolean> = new EventEmitter();
     @ViewChild(Number) valor: number;
@@ -74,17 +76,13 @@ export class PagamentoColaboradorComponent implements OnInit {
     }
 
     salvarFormulario(): void {
-        this.novoPagamento = this.formPagamentoColaborador.getRawValue();
-            this.pagamentoColaboradorService.salvar(this.novoPagamento).pipe(finalize(() => {
+        this.pagamentoColaborador = this.formPagamentoColaborador.getRawValue();
+            this.pagamentoColaboradorService.salvar(this.pagamentoColaborador).pipe(finalize(() => {
                 this.fecharForm();
                 this.listarPagamento = true;
             })).subscribe(
                 () => {
-                    if(this.novoPagamento.id){
-                        this.mensagemUtil.mensagemSucesso('Sucesso ao atualizar o pagamento', 'Sucesso');
-                    }else {
-                        this.mensagemUtil.mensagemSucesso('Sucesso ao cadastrar um pagamento', 'Sucesso')
-                    }
+                    this.mensagemUtil.mensagemSucesso(this.pagamentoColaborador.id, "", false, EntityEnum.PAGAMENTO_COLABORADOR)
                 }, error => this.mensagemUtil.mensagemErro(error.error.message, 'Falha ao salvar o pagamento.\n'))
     }
 

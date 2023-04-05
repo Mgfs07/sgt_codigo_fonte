@@ -4,10 +4,18 @@ import com.br.sgt.sgtproject.service.PagamentoColaboradorService;
 import com.br.sgt.sgtproject.service.dto.MetaDTO;
 import com.br.sgt.sgtproject.service.dto.PagamentoColaboradorDTO;
 import com.br.sgt.sgtproject.service.dto.PagamentoColaboradorListDTO;
+import com.br.sgt.sgtproject.service.dto.PagantesDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -53,5 +61,17 @@ public class PagamentoColaboradorResource {
     public ResponseEntity<List<MetaDTO>> enviarMetas(@PathVariable("id") Integer id) {
         List<MetaDTO> metas = service.metas(id);
         return new ResponseEntity<>(metas, HttpStatus.OK);
+    }
+
+    @GetMapping("/pagou/{id}")
+    public ResponseEntity<List<PagantesDTO>> quemPagou(@PathVariable("id") Integer id) {
+        List<PagantesDTO> pagantes = service.quemPagou(id);
+        return new ResponseEntity<>(pagantes, HttpStatus.OK);
+    }
+
+    @GetMapping("/naopagou/{id}")
+    public ResponseEntity<List<String>> naoPagou(@PathVariable("id") Integer id) {
+        List<String> pagantes = service.quemNaoPagou(id);
+        return new ResponseEntity<>(pagantes, HttpStatus.OK);
     }
 }

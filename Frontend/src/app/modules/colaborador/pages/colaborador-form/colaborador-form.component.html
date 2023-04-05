@@ -21,7 +21,7 @@
         <input type="text" pInputText formControlName="email"/>
     </div>
 </form>
-<div class="field col-12">
+<div *ngIf="mostrarGastosColaborador" class="field col-12">
     <p>Pagamentos do Colaborador: </p>
     <app-tabela-generica [dados]="pagamentosColaborador"
                          [colunas]="coluna"

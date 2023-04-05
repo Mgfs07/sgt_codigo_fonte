@@ -1,58 +1,44 @@
 package com.br.sgt.sgtproject.builder;
 
+import com.br.sgt.sgtproject.domain.Colaborador;
+import com.br.sgt.sgtproject.domain.Pagamento;
 import com.br.sgt.sgtproject.domain.PagamentoColaborador;
-import com.br.sgt.sgtproject.service.dto.PagamentoColaboradorListDTO;
+import com.br.sgt.sgtproject.repository.PagamentoColaboradorRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
-public class PagamentoColaboradorBuilder {
+@Component
+public class PagamentoColaboradorBuilder extends ConstruirEntidade<PagamentoColaborador> {
 
-    private PagamentoColaboradorBuilder(){
+    @Autowired
+    private PagamentoColaboradorRepository repository;
 
-    }
+    @Autowired
+    private ColaboradorBuilder colaboradorBuilder;
 
-    private PagamentoColaborador pagamentoColaborador;
-    private PagamentoColaboradorListDTO pagamentoColaboradorList;
+    @Autowired
+    private PagamentoBuilder pagamentoBuilder;
 
-    static PagamentoColaboradorBuilder umPagamentoColaborador(){
-        PagamentoColaboradorBuilder builder = new PagamentoColaboradorBuilder();
-        builder.pagamentoColaborador = new PagamentoColaborador();
-        return builder;
-    }
 
-    static PagamentoColaboradorBuilder umPagamentoColaboradorList(){
-        PagamentoColaboradorBuilder builder = new PagamentoColaboradorBuilder();
-        builder.pagamentoColaboradorList = new PagamentoColaboradorListDTO();
-        return builder;
-    }
-
-    public PagamentoColaboradorBuilder todosAtributos(){
-        pagamentoColaborador.setId(1);
-        pagamentoColaborador.setColaborador(ColaboradorBuilder.umColaborador().todosAtributos().builder());
-        pagamentoColaborador.setPagamento(PagamentoBuilder.umPagamento().todosAtributos().builder());
+    public PagamentoColaborador construirEntidade(){
+        Colaborador colaborador = colaboradorBuilder.contruir();
+        Pagamento pagamento = pagamentoBuilder.contruir();
+        PagamentoColaborador pagamentoColaborador = new PagamentoColaborador();
+        pagamentoColaborador.setColaborador(colaborador);
+        pagamentoColaborador.setPagamento(pagamento);
         pagamentoColaborador.setObservacao("Nenhuma");
-        pagamentoColaborador.setRetiradoLugar(true);
-        pagamentoColaborador.setPagamentoRetirado(PagamentoBuilder.umPagamento().todosAtributos().builder());
-        pagamentoColaborador.setDataPagamento(LocalDateTime.now());
+        pagamentoColaborador.setRetiradoLugar(false);
+        pagamentoColaborador.setPagamentoRetirado(null);
+        pagamentoColaborador.setDataPagamento(LocalDate.now());
         pagamentoColaborador.setValorPago(100.00);
-        return this;
-    }
-
-    public PagamentoColaboradorBuilder todosAtributosList(){
-        pagamentoColaboradorList.setId(1);
-        pagamentoColaboradorList.setNomeColaborador(ColaboradorBuilder.umColaborador().todosAtributos().builder().getNomeColaborador());
-        pagamentoColaboradorList.setNomePagamento(PagamentoBuilder.umPagamento().todosAtributos().builder().getNomePagamento());
-        pagamentoColaboradorList.setValorPago(50.00);
-        return this;
-    }
-
-    public PagamentoColaborador builder(){
-        return this.pagamentoColaborador;
-    }
-
-    public PagamentoColaboradorListDTO builderList(){
-        return this.pagamentoColaboradorList;
+        return pagamentoColaborador;
     }
 
 
+    @Override
+    public PagamentoColaborador persistir(PagamentoColaborador entity) {
+        return repository.save(entity);
+    }
 }

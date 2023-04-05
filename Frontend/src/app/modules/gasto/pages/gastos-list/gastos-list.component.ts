@@ -1,31 +1,42 @@
-import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {ColunaModel} from "../../../../model/coluna.model";
 import {GastosService} from "../../../../shared/service/gastos.service";
 import {GastoListModel} from "../../../../model/gasto-list.model";
 import {GastosComponent} from "../gastos/gastos.component";
+import {EntityEnum} from "../../../../shared/utils/entity-enum";
+import {MensagensUtil} from "../../../../shared/utils/mensagens-util";
+import {ConfirmationService} from "primeng/api";
+import {Mensagens} from "../../../../shared/utils/mensagens";
+import {finalize} from "rxjs";
+import {BlockUI, NgBlockUI} from "ng-block-ui";
 
 @Component({
-  selector: 'app-gastos-list',
-  templateUrl: './gastos-list.component.html',
-  styleUrls: ['./gastos-list.component.scss']
+    selector: 'app-gastos-list',
+    templateUrl: './gastos-list.component.html',
+    styleUrls: ['./gastos-list.component.scss']
 })
 export class GastosListComponent implements OnInit {
 
 
     colunas: ColunaModel[] = [];
     gastoList: GastoListModel[] = [];
+    novo: boolean
+    entidade: string = 'Gasto';
 
+    @BlockUI() blockUI : NgBlockUI;
     @Input() display = false;
-    @Output() recarregarListagem: EventEmitter<any> = new EventEmitter;
     @ViewChild(GastosComponent) formGasto: GastosComponent;
 
+    constructor(private gastoService: GastosService,
+                private mensagemUtil: MensagensUtil,
+                private confirmationService: ConfirmationService
+    ) {
+    }
 
-  constructor(private gastoService: GastosService) { }
-
-  ngOnInit(): void {
-      this.columnsTable();
-      this.obterPagamentoColaborador();
-  }
+    ngOnInit(): void {
+        this.columnsTable();
+        this.obterPagamentoColaborador();
+    }
 
     public columnsTable() {
         this.colunas = [
@@ -34,16 +45,8 @@ export class GastosListComponent implements OnInit {
             new ColunaModel('dataDispesa', 'Data'),
             new ColunaModel('valorRetirado', 'Valor'),
             new ColunaModel('retiradoDoPagamento', 'Retirado De'),
-            new ColunaModel('acoes', 'Ações', '10%' )
+            new ColunaModel('acoes', 'Ações', '10%')
         ];
-    }
-
-    isData(coluna: string): boolean {
-        return coluna === 'dataDispesa';
-    }
-
-    isValor(coluna: string): boolean {
-      return coluna == 'valorRetirado';
     }
 
     public obterPagamentoColaborador(): void {
@@ -54,14 +57,10 @@ export class GastosListComponent implements OnInit {
         );
     }
 
-    editar(id: number): void {
-        this.formGasto.editarGasto(id);
-        this.display = true;
-    }
-
     novoPagamento(): void {
         this.formGasto.formGasto.reset();
         this.display = true;
+        this.novo = true;
     }
 
     public fecharModal(): void {
@@ -76,16 +75,36 @@ export class GastosListComponent implements OnInit {
         this.formGasto.fecharForm();
     }
 
+    verificarTitulo(): string {
+        return this.mensagemUtil.tituloModal(this.novo, EntityEnum.GASTO);
+    }
+
     carregar(idPagamento: number): void {
         this.display = true;
+        this.novo = false;
         this.formGasto.editarGasto(idPagamento);
         this.formGasto.formGasto.enable();
     }
 
-    deletar(id: number) : void {
-        this.gastoService.deletar(id).subscribe(() => {
-            this.obterPagamentoColaborador();
-        }, error => {})
+    confirmarExclusao(id: number): void {
+        this.confirmationService.confirm({
+            header: 'Excluir Doação',
+            message: 'Deseja excluir esse registro? ',
+            acceptLabel: 'Sim',
+            rejectLabel: 'Cancelar',
+            accept: () => this.deletar(id)
+        })
+    }
+
+    public deletar(id: number): void {
+        this.blockUI.start(Mensagens.CARREGANDO_DADOS);
+        this.gastoService.deletar(id)
+            .pipe(finalize(() => {
+                this.blockUI.stop();
+                this.obterPagamentoColaborador();
+            }))
+            .subscribe(() => {this.mensagemUtil.mensagemSucesso(id, "", true)},
+                    error => this.mensagemUtil.mensagemErro(error.error.message, 'Falha ao Excluir Gasto.\n') )
     }
 
 }

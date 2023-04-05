@@ -11,9 +11,14 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {DialogModule} from "primeng/dialog";
 import {ButtonModule} from "primeng/button";
 import {ToastModule} from 'primeng/toast';
-import {MessageService} from "primeng/api";
+import {ConfirmationService, MessageService} from "primeng/api";
 import {MensagensUtil} from "./shared/utils/mensagens-util";
 import {InicioComponent} from "./pages/inicio/inicio.component";
+import {DatePipe} from "@angular/common";
+import {ChartModule} from "primeng/chart";
+import {OrganizationChartModule} from "primeng/organizationchart";
+import {CardModule} from "primeng/card";
+import {BlockUIModule} from "ng-block-ui";
 
 
 @NgModule({
@@ -24,6 +29,7 @@ import {InicioComponent} from "./pages/inicio/inicio.component";
         SidemenuComponent,
     ],
     imports: [
+        BlockUIModule.forRoot(),
         BrowserModule,
         AppRoutingModule,
         SharedModule,
@@ -32,8 +38,11 @@ import {InicioComponent} from "./pages/inicio/inicio.component";
         DialogModule,
         ButtonModule,
         ToastModule,
-        ],
-    providers: [MessageService, MensagensUtil],
+        ChartModule,
+        OrganizationChartModule,
+        CardModule,
+    ],
+    providers: [MessageService, MensagensUtil, ConfirmationService, DatePipe],
     exports: [
         InicioComponent
     ],

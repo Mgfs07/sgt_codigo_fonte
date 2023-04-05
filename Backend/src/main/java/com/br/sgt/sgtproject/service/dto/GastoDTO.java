@@ -11,18 +11,11 @@ import java.time.LocalDate;
 public class GastoDTO implements Serializable {
 
     private Integer id;
-
     private String motivo;
-
     private String descricao;
-
-    private Integer idColaborador; // mudar
-
+    private Integer idColaborador;
     private LocalDate dataDispesa;
-
     private Double valorRetirado;
-
     private String comprovante;
-
     private Integer retiradoDoPagamento;
 }

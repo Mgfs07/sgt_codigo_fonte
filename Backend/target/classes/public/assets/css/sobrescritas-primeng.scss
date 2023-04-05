@@ -1,0 +1,16 @@
+app-pagamentos-colaborador-list > p-dialog > div > div {
+    width: 40%;
+}
+
+app-gastos > div > p-card > div > div {
+    padding-top: 0 !important;
+
+    > div {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+
+        >div {
+            padding-top: 0 !important;
+        }
+    }
+}

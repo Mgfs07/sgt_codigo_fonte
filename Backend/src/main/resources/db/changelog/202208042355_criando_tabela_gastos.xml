@@ -23,7 +23,7 @@
             <column name="valor_retirado" type="DOUBLE">
                 <constraints nullable="false"/>
             </column>
-            <column name="comprovante" type="VARCHAR(255)"/>
+            <column name="comprovante" type="text"/>
             <column name="id_pagamento" type="INT">
                 <constraints nullable="false"/>
             </column>

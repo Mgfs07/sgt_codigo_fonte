@@ -1,4 +1,36 @@
-<h1>Bem-vindo ao sistema de tesouraria!</h1>
 <div>
-    <img src="assets/images/logo.png" class="imagem-log">
+    <div class="col-12 flex">
+        <div class="container col-4">
+            <p-card class="card-item-menu" (click)="mudarRota(0)">
+                <i class="icon pi pi-user"></i>
+                <span class="label-button">Colaboradores</span>
+            </p-card>
+        </div>
+        <div class="container col-4">
+            <p-card class="card-item-menu" (click)="mudarRota(1)">
+                <i class="icon pi pi-money-bill"></i>
+                <span class="label-button">Pagamentos</span>
+            </p-card>
+        </div>
+        <div class="container col-4">
+            <p-card class="card-item-menu" (click)="mudarRota(2)">
+                <i class="icon pi pi-eject"></i>
+                <span class="label-button">Doações</span>
+            </p-card>
+        </div>
+    </div>
+    <div class="col-12 flex">
+        <div class="container col-4">
+            <p-card class="card-item-menu" (click)="mudarRota(3)">
+                <i class="icon pi pi-exclamation-triangle"></i>
+                <span class="label-button">Gastos</span>
+            </p-card>
+        </div>
+        <div class="container col-4">
+            <p-card class="card-item-menu" (click)="mudarRota(4)">
+                <i class="icon pi pi-chart-bar"></i>
+                <span class="label-button">Metas</span>
+            </p-card>
+        </div>
+    </div>
 </div>

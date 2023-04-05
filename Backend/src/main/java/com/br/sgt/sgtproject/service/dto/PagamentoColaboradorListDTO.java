@@ -4,19 +4,15 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Getter
 @Setter
 public class PagamentoColaboradorListDTO implements Serializable {
 
     private Integer id;
-
     private String nomeColaborador;
-
     private String nomePagamento;
-
-    private LocalDateTime dataPagamento;
-
+    private LocalDate dataPagamento;
     private Double valorPago;
 }

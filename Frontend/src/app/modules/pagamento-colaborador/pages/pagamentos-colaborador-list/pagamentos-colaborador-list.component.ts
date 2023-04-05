@@ -3,6 +3,12 @@ import {PagamentosColaboradoresService} from "../../../../shared/service/pagamen
 import {ColunaModel} from "../../../../model/coluna.model";
 import {PagamentoColaboradorModel} from "../../../../model/pagamento-colaborador.model";
 import {PagamentoColaboradorComponent} from "../pagamento-colaborador/pagamento-colaborador.component";
+import {MensagensUtil} from "../../../../shared/utils/mensagens-util";
+import {EntityEnum} from "../../../../shared/utils/entity-enum";
+import {ConfirmationService} from "primeng/api";
+import {Mensagens} from "../../../../shared/utils/mensagens";
+import {finalize} from "rxjs";
+import {BlockUI, NgBlockUI} from "ng-block-ui";
 
 @Component({
   selector: 'app-pagamentos-colaborador-list',
@@ -13,13 +19,17 @@ export class PagamentosColaboradorListComponent implements OnInit {
 
     colunas: ColunaModel[] = [];
     pagamentoColaborador: PagamentoColaboradorModel[] = [];
+    novo: boolean;
 
+    @BlockUI() blockUI : NgBlockUI;
     @Input() display = false;
     @Output() recarregarListagem: EventEmitter<any> = new EventEmitter;
     @ViewChild(PagamentoColaboradorComponent) formPagamentoColaborador: PagamentoColaboradorComponent;
 
     constructor(
       private pagamentoColaboradorService: PagamentosColaboradoresService,
+      private mensagemUtil: MensagensUtil,
+      private confirmationService: ConfirmationService
   ) { }
 
     ngOnInit(): void {
@@ -37,30 +47,25 @@ export class PagamentosColaboradorListComponent implements OnInit {
         ];
     }
 
-    isData(coluna: string): boolean {
-        return coluna === 'dataPagamento';
-    }
-
-    isValor(coluna: string): boolean {
-        return coluna == 'valorPago';
-    }
-
     public obterPagamentoColaborador(): void {
-        this.pagamentoColaboradorService.buscarTodos().subscribe(
+        this.blockUI.start(Mensagens.CARREGANDO_DADOS);
+        this.pagamentoColaboradorService.buscarTodos().pipe(finalize(() => {
+            this.blockUI.stop();
+        })).subscribe(
             (data) => {
                 this.pagamentoColaborador = data;
             }
         );
     }
 
-    editar(id: number): void {
-        this.formPagamentoColaborador.editarPagamentoColaborador(id);
-        this.display = true;
+    verificarTitulo(): string {
+        return this.mensagemUtil.tituloModal(this.novo, EntityEnum.PAGAMENTO_COLABORADOR);
     }
 
     novoPagamento(): void {
         this.formPagamentoColaborador.formPagamentoColaborador.reset();
         this.display = true;
+        this.novo = true;
     }
 
     public fecharModal(): void {
@@ -71,11 +76,25 @@ export class PagamentosColaboradorListComponent implements OnInit {
         }
     }
 
-    deletar(id: number) : void {
-        console.log(id);
-        this.pagamentoColaboradorService.deletar(id).subscribe(() => {
-            this.obterPagamentoColaborador();
-        }, error => {})
+    confirmarExclusao(id: number): void {
+        this.confirmationService.confirm({
+            header: 'Excluir Doação',
+            message: 'Deseja excluir esse registro? ',
+            acceptLabel: 'Sim',
+            rejectLabel: 'Cancelar',
+            accept: () => this.deletar(id)
+        })
+    }
+
+    public deletar(id: number): void {
+        this.blockUI.start(Mensagens.CARREGANDO_DADOS);
+        this.pagamentoColaboradorService.deletar(id)
+            .pipe(finalize(() => {
+                this.blockUI.stop();
+                this.obterPagamentoColaborador();
+            }))
+            .subscribe(() => {this.mensagemUtil.mensagemSucesso(id, "", true)},
+                    error => this.mensagemUtil.mensagemErro(error.error.message, 'Falha ao Excluir Pagamento do Colaborador.\n') )
     }
 
     resetarForm(): void {
@@ -84,6 +103,7 @@ export class PagamentosColaboradorListComponent implements OnInit {
 
     carregar(idPagamento: number): void {
         this.display = true;
+        this.novo = false;
         this.formPagamentoColaborador.editarPagamentoColaborador(idPagamento);
         this.formPagamentoColaborador.formPagamentoColaborador.enable();
     }
